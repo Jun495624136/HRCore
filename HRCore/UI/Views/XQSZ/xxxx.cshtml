@@ -1,0 +1,134 @@
+﻿@model JueSeModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/right_list_information.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <link href="~/jquery-easyui-1.3.5/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="~/jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
+    <script src="~/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <title>xxxx</title>
+    <script type="text/javascript">
+               $(function () {
+            $('#tt').tree({
+                url: "/XQSZ/fxk",
+                checkbox:true,
+                onLoadSuccess: function (node, data) {  
+                    if (data!=null)
+                    {
+                        for (var i in data) {
+                            console.info(data[i]);
+                            if (data[i].state == "closed") {
+                                $('#tt').tree("expandAll");
+                            }
+                        }
+                    }
+                }
+                   
+            });
+               })
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--权限管理--编辑角色</font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="button" value="保存" class="BUTTON_STYLE1"
+                           v-on:click="xg()">
+                    <input type="button" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back()">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=3 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">角色编号</td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.JueSe_id"
+                           id="ID" readonly="readonly" class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">角色名称</td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.JueSe_name"
+                           id="name" readonly="readonly" class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">角色是否可用</td>
+                <td class="TD_STYLE2">
+                    <select asp-for="@Model.SFky" id="SFky">
+                        <option value="2">否</option>
+                        <option value="1">是</option>
+                    </select>
+
+                </td>
+            </tr>
+        </table>
+            <ul id="tt"></ul>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                dt: [],
+                id: "",
+                name: "",
+                SFky: "",
+                qid:"",
+            },
+            methods: {
+                xg: function () {
+                    var t = this;
+                       
+                        var nodes = $('#tt').tree('getChecked');//全勾
+                        for (var i = 0; i < nodes.length; i++) {
+                            t.dt[i]= nodes[i].id ;
+                        }
+                        var nodes1 = $('#tt').tree('getChecked', 'indeterminate');//半勾
+                        for (var i = 0; i < nodes1.length; i++) {
+                            t.dt[i+nodes.length] = nodes1[i].id;
+                    }
+                    this.xg2();
+                },
+                xg2: function () {
+                     var t = this;
+                    $.ajax({
+                        url: "/XQSZ/XG",
+                        type: "post",
+                        data: "dt=" + t.dt,
+                        success: function (msg) {
+                            if (msg>0) {
+                                window.location.href = "/XQSZ/Index/"
+                            }
+                           
+                        }
+                    });
+                }
+            },
+             mounted: function () {
+                
+            }
+        });
+    </script>
+</body>
+
+</html>

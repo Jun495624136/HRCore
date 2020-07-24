@@ -4,4 +4,238 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="wwwroot\images\11041R35400-19.jpg" />
+    <None Include="wwwroot\images\2.JPG" />
+    <None Include="wwwroot\images\2003122615534015613.jpg" />
+    <None Include="wwwroot\images\20120526002225111.png" />
+    <None Include="wwwroot\images\bg_lft.jpg" />
+    <None Include="wwwroot\images\bg_s.jpg" />
+    <None Include="wwwroot\images\bg_w.jpg" />
+    <None Include="wwwroot\images\blank.gif" />
+    <None Include="wwwroot\images\bt_del.gif" />
+    <None Include="wwwroot\images\bt_edit.gif" />
+    <None Include="wwwroot\images\e_maximize.gif" />
+    <None Include="wwwroot\images\e_restore.gif" />
+    <None Include="wwwroot\images\folder.gif" />
+    <None Include="wwwroot\images\folder1.gif" />
+    <None Include="wwwroot\images\foot-bg.jpg" />
+    <None Include="wwwroot\images\go.bmp" />
+    <None Include="wwwroot\images\green.swf" />
+    <None Include="wwwroot\images\images\bonus.gif" />
+    <None Include="wwwroot\images\images\bonus1.gif" />
+    <None Include="wwwroot\images\images\config.gif" />
+    <None Include="wwwroot\images\images\config1.gif" />
+    <None Include="wwwroot\images\images\engage.gif" />
+    <None Include="wwwroot\images\images\engage1.gif" />
+    <None Include="wwwroot\images\images\export.gif" />
+    <None Include="wwwroot\images\images\export1.gif" />
+    <None Include="wwwroot\images\images\file.gif" />
+    <None Include="wwwroot\images\images\file1.gif" />
+    <None Include="wwwroot\images\images\helpProgram.gif" />
+    <None Include="wwwroot\images\images\helpProgram1.gif" />
+    <None Include="wwwroot\images\images\major_change.gif" />
+    <None Include="wwwroot\images\images\major_change1.gif" />
+    <None Include="wwwroot\images\images\mod_image\bonus.gif" />
+    <None Include="wwwroot\images\images\mod_image\bonus_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\bonus_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\bonus_register_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\config.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_engage.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_engage_firstKind.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_engage_secondKind.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file_firstKind.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file_majorFirstKind.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file_majorSecondKind.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file_publicSetup.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file_secondKind.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file_thirdKind.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_file_title.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_key.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_key_key.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_salary.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_salary_itemName.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_salary_orderSaleBonus.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_salary_payType.gif" />
+    <None Include="wwwroot\images\images\mod_image\config_salary_retailSaleBonus.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_interview.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_interview_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_interview_register_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_major_release.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_major_release_change_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_major_release_query_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_major_release_register.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_pass.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_pass_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_pass_query_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_pass_register_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_questiones.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_questiones_change_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_questiones_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_questiones_register.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_resume.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_resume_check_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_resume_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_resume_register.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_test.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_test_answerCheck_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_test_answerRegister.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_test_pointQuery_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\engage_test_questionesRegister_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\export.gif" />
+    <None Include="wwwroot\images\images\mod_image\export_excel.gif" />
+    <None Include="wwwroot\images\images\mod_image\export_pdf.gif" />
+    <None Include="wwwroot\images\images\mod_image\export_xml.gif" />
+    <None Include="wwwroot\images\images\mod_image\file.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_change_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_delete.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_delete_delete_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_delete_realDelete_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_delete_recovery_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\file_register.gif" />
+    <None Include="wwwroot\images\images\mod_image\helpProgram.gif" />
+    <None Include="wwwroot\images\images\mod_image\helpProgram1.gif" />
+    <None Include="wwwroot\images\images\mod_image\major_change.gif" />
+    <None Include="wwwroot\images\images\mod_image\major_change1.gif" />
+    <None Include="wwwroot\images\images\mod_image\major_change_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\major_change_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\major_change_register_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\nseererp_hr.jpg" />
+    <None Include="wwwroot\images\images\mod_image\salary.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary1.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_register_unit_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_standard.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_standard_change_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_standard_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_standard_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\salary_standard_register.gif" />
+    <None Include="wwwroot\images\images\mod_image\Thumbs.db" />
+    <None Include="wwwroot\images\images\mod_image\training.gif" />
+    <None Include="wwwroot\images\images\mod_image\training_check_list.gif" />
+    <None Include="wwwroot\images\images\mod_image\training_query_locate.gif" />
+    <None Include="wwwroot\images\images\mod_image\training_register_locate.gif" />
+    <None Include="wwwroot\images\images\nseererp_hr.jpg" />
+    <None Include="wwwroot\images\images\salary.gif" />
+    <None Include="wwwroot\images\images\salary1.gif" />
+    <None Include="wwwroot\images\images\salary_standard.gif" />
+    <None Include="wwwroot\images\images\salary_standard1.gif" />
+    <None Include="wwwroot\images\images\Thumbs.db" />
+    <None Include="wwwroot\images\images\training.gif" />
+    <None Include="wwwroot\images\images\training1.gif" />
+    <None Include="wwwroot\images\jt0.gif" />
+    <None Include="wwwroot\images\loading.gif" />
+    <None Include="wwwroot\images\login_1.gif" />
+    <None Include="wwwroot\images\login_11.gif" />
+    <None Include="wwwroot\images\login_1_1.jpg" />
+    <None Include="wwwroot\images\login_2.jpg" />
+    <None Include="wwwroot\images\login_22.jpg" />
+    <None Include="wwwroot\images\login_2_1.jpg" />
+    <None Include="wwwroot\images\login_3.jpg" />
+    <None Include="wwwroot\images\login_33.jpg" />
+    <None Include="wwwroot\images\login_3_1.jpg" />
+    <None Include="wwwroot\images\login_button.gif" />
+    <None Include="wwwroot\images\menu_bg.gif" />
+    <None Include="wwwroot\images\menu_bg1.gif" />
+    <None Include="wwwroot\images\menu_bg2.gif" />
+    <None Include="wwwroot\images\menu_bg3.gif" />
+    <None Include="wwwroot\images\menu_bgs.gif" />
+    <None Include="wwwroot\images\menu_topline.gif" />
+    <None Include="wwwroot\images\minus.gif" />
+    <None Include="wwwroot\images\minus33.gif" />
+    <None Include="wwwroot\images\na2.jpg" />
+    <None Include="wwwroot\images\nn.jpg" />
+    <None Include="wwwroot\images\NodeImg0.gif" />
+    <None Include="wwwroot\images\NodeImg1.gif" />
+    <None Include="wwwroot\images\NodeImg2.gif" />
+    <None Include="wwwroot\images\nseererp11.jpg" />
+    <None Include="wwwroot\images\onepice.jpg" />
+    <None Include="wwwroot\images\plus.gif" />
+    <None Include="wwwroot\images\plus22.gif" />
+    <None Include="wwwroot\images\regular.jpg" />
+    <None Include="wwwroot\images\return.jpg" />
+    <None Include="wwwroot\images\school.jpg" />
+    <None Include="wwwroot\images\security.gif" />
+    <None Include="wwwroot\images\security1.gif" />
+    <None Include="wwwroot\images\sheet.gif" />
+    <None Include="wwwroot\images\spacer.gif" />
+    <None Include="wwwroot\images\t.jpg" />
+    <None Include="wwwroot\images\tableftF.gif" />
+    <None Include="wwwroot\images\tableftJ.gif" />
+    <None Include="wwwroot\images\tabrightF.gif" />
+    <None Include="wwwroot\images\tabrightJ.gif" />
+    <None Include="wwwroot\images\tab_inactive.jpg" />
+    <None Include="wwwroot\images\tab_inactive1.jpg" />
+    <None Include="wwwroot\images\Thumbs.db" />
+    <None Include="wwwroot\images\top-unit.gif" />
+    <None Include="wwwroot\images\top-unit_副本.jpg" />
+    <None Include="wwwroot\images\tree_arrow_close.gif" />
+    <None Include="wwwroot\images\tree_arrow_open.gif" />
+    <None Include="wwwroot\images\tree_arrow_over.gif" />
+    <None Include="wwwroot\images\tree_close.gif" />
+    <None Include="wwwroot\images\tree_icon_cd.gif" />
+    <None Include="wwwroot\images\tree_icon_cdrom.gif" />
+    <None Include="wwwroot\images\tree_icon_computer.gif" />
+    <None Include="wwwroot\images\tree_icon_driver.gif" />
+    <None Include="wwwroot\images\tree_icon_file.gif" />
+    <None Include="wwwroot\images\tree_icon_folder.gif" />
+    <None Include="wwwroot\images\tree_icon_folder_close.gif" />
+    <None Include="wwwroot\images\tree_icon_folder_open.gif" />
+    <None Include="wwwroot\images\tree_icon_net.gif" />
+    <None Include="wwwroot\images\tree_icon_recycler.gif" />
+    <None Include="wwwroot\images\tree_open.gif" />
+    <None Include="wwwroot\images\tuopu_01.gif" />
+    <None Include="wwwroot\images\tuopu_05.gif" />
+    <None Include="wwwroot\images\tuopu_08.gif" />
+    <None Include="wwwroot\images\tuopu_10.gif" />
+    <None Include="wwwroot\images\tuopu_11.gif" />
+    <None Include="wwwroot\images\tuopu_13.gif" />
+    <None Include="wwwroot\images\tuopu_14.gif" />
+    <None Include="wwwroot\images\tuopu_15.gif" />
+    <None Include="wwwroot\images\tuopu_16.gif" />
+    <None Include="wwwroot\images\tuopu_18.gif" />
+    <None Include="wwwroot\images\tuopu_19.gif" />
+    <None Include="wwwroot\images\tuopu_21.gif" />
+    <None Include="wwwroot\images\tuopu_22.gif" />
+    <None Include="wwwroot\images\tuopu_23.gif" />
+    <None Include="wwwroot\images\tuopu_24.gif" />
+    <None Include="wwwroot\images\tuopu_26.gif" />
+    <None Include="wwwroot\images\tuopu_28.gif" />
+    <None Include="wwwroot\images\tuopu_29.gif" />
+    <None Include="wwwroot\images\tuopu_31.gif" />
+    <None Include="wwwroot\images\tuopu_32.gif" />
+    <None Include="wwwroot\images\tuopu_33.gif" />
+    <None Include="wwwroot\images\tuopu_34.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj" />
+    <ProjectReference Include="..\DAO\DAO.csproj" />
+    <ProjectReference Include="..\EFEntity\EFEntity.csproj" />
+    <ProjectReference Include="..\IBLL\IBLL.csproj" />
+    <ProjectReference Include="..\IDAO\IDAO.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\WebApi\WebApi.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,145 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>111111111111111111</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/javascript/bootstrap.js"></script>
+</head>
+<body>
+    <div id="div1">
+        <font color="black"> 您在做的业务是-人力资源-调动管理-调动登记列表 </font>
+        <br /><br /><br />
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr height="21">
+                <td width="19%" class="TD_STYLE1">
+                    I级机构
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    Ⅲ级机构
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    薪酬标准
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    名字
+                </td>
+                <td width="5%" class="TD_STYLE1">
+                    调动
+
+                </td>
+            </tr>
+            <tr height="21" v-for="item in da">
+                <td class="TD_STYLE2">
+                    {{item.First_kind_name}}
+                </td>
+                <td class="TD_STYLE2">
+                    {{item.Second_kind_name}}
+                </td>
+                <td class="TD_STYLE2">
+                    {{item.Third_kind_name}}
+
+                </td>
+                <td class="TD_STYLE2">
+                    {{item.Salary_standard_name}}
+                </td>
+                <td class="TD_STYLE2">
+                    {{item.Human_name}}
+                </td>
+                <td class="TD_STYLE2">
+                    <a v-bind:href="'/DDSQ/register/'+[item.Huf_id]">
+                        调动
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div id="pageDiv" style="text-align:center">
+            <div id="leftPage">
+            </div>
+            <div id="rightPage">
+                <input type="image" id="btnfirst" src="~/images/images/first.gif" v-on:click="first1" />&nbsp;&nbsp;
+                <input type="image" id="btnback" src="~/images/images/back.gif" v-on:click="back1" />&nbsp;&nbsp;
+                <input type="image" id="btnnext" src="~/images/images/next.gif" v-on:click="next1" />&nbsp;&nbsp;
+                <input type="image" id="btnlast" src="~/images/images/last.gif" v-on:click="last1" />&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                da: [],
+                pageIndex: 1,
+                pages: 0,
+                pageSize: 2,
+                totalPage: 0
+            }, methods: {
+                load: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/DDSQ/select",
+                        type: "post",
+                        data: "id=" + t.pageIndex,
+                        success: function (msg) {
+                            var z = eval("(" + msg + ")");
+                            t.da = z.li;
+                            t.totalPage = z.Rows;
+                            t.pages = z.Pages;
+
+                        }
+
+                    });
+
+                },
+                first1: function () {
+                    var btn = this;
+                    btn.pageIndex = 1;
+                    btn.load();
+                },
+                back1: function () {
+                    var btn = this;
+                    if (btn.pageIndex > 1) {
+                        btn.pageIndex--;
+                    } else {
+                        btn.pageIndex = 1;
+                    }
+                    btn.load();
+                },
+                next1: function () {
+                    var btn = this;
+                    if (btn.pageIndex < btn.totalPage) {
+                        btn.pageIndex++;
+                    } else {
+                        btn.pageIndex = btn.totalPage;
+                    }
+                    btn.load();
+                },
+                last1: function () {
+                    var btn = this;
+                    btn.pageIndex = btn.totalPage;
+                    btn.load();
+                },
+                
+            },
+            mounted: function () {
+                this.load();
+            }
+        });
+    </script>
+</body>
+</html>

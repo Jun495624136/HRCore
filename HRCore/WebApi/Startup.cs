@@ -26,6 +26,7 @@ namespace WebApi
             var conStr = configuration.GetConnectionString("SqlServerConnection");
             services.AddControllers();
             services.AddDbContext<HR_DBContext>();
+            services.AddDistributedMemoryCache().AddSession();
             //øÁ”Ú
             services.AddCors(option => option.AddPolicy("AllowCors", bu => bu.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
         }
@@ -37,7 +38,7 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSession();
             app.UseRouting();
             //øÁ”Ú
             app.UseCors("AllowCors");
