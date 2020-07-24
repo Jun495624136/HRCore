@@ -1,14 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EFEntity
 {
-   public class HR_DBContext:DbContext
+    public class HR_DBContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -113,7 +107,7 @@ namespace EFEntity
 
             var cpk = modelBuilder.Entity<Config_primary_key>();
             cpk.ToTable(nameof(Config_primary_key));
-            cpk.HasKey("Ans_id");
+            cpk.HasKey("Prk_id");
 
             var cmk = modelBuilder.Entity<Config_major_kind>();
             cmk.ToTable(nameof(Config_major_kind));

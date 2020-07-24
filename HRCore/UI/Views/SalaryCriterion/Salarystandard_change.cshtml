@@ -1,0 +1,203 @@
+﻿
+<!DOCTYPE html>
+@using System.Data
+@model Model.ViewTable
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Salarystandard_change</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/JS/jquery.validate.js"></script>
+    <script src="~/JS/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div>
+        <div id="div1">
+            <form method="post" asp-action="Salarystandard_change">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记变更</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div align="right">
+                                <input type="submit" value="重新提交" class="BUTTON_STYLE1">
+                                <input type="button" value="返回" onclick="history.back();" class="BUTTON_STYLE1">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="100%" border="1" cellpadding=0 cellspacing=1
+                       bordercolorlight='#848284' bordercolordark='#eeeeee'
+                       class="TABLE_STYLE1">
+                    @foreach (var item in Model.Salary_standard)
+                    {
+                        <tr>
+                            <td width="12%" class="TD_STYLE1">
+                                薪酬编号
+                                <input asp-for="@item.Ssd_id" hidden="hidden" />
+                            </td>
+                            <td width="15%" class="TD_STYLE2">
+                                <input asp-for="@item.Standard_id" class="INPUT_STYLE2" readonly="readonly" />
+                            </td>
+                            <td width="12%" class="TD_STYLE1">
+                                薪酬标准名称
+                            </td>
+                            <td width="11%" class="TD_STYLE2">
+                                <input asp-for="@item.Standard_name" class="INPUT_STYLE2">
+                                <span asp-validation-for="@item.Standard_name"></span>
+                            </td>
+                            <td width="11%" class="TD_STYLE1">
+                                薪酬总额
+                            </td>
+                            <td width="17%" class="TD_STYLE2">
+                                <input asp-for="@item.Salary_sum" class="INPUT_STYLE2" readonly="readonly">
+                            </td>
+                            <td width="12%" class="TD_STYLE1">
+                                &nbsp;
+                            </td>
+                            <td width="10%" class="TD_STYLE2">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TD_STYLE1">
+                                制定人
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input asp-for="@item.Designer" class="INPUT_STYLE2">
+                                <span asp-validation-for="@item.Designer"></span>
+                            </td>
+                            <td class="TD_STYLE1">
+                                变更人
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input asp-for="@item.Changer" value='@ViewBag.cheNmae' class="INPUT_STYLE2">
+                                <span asp-validation-for="@item.Changer"></span>
+                            </td>
+                            <td class="TD_STYLE1">
+                                变更时间
+                            </td>
+                            <td class="TD_STYLE2">
+                                <input asp-for="@item.Change_time" class="INPUT_STYLE2" readonly="readonly">
+                            </td>
+                            <td class="TD_STYLE1">
+                                &nbsp;
+                            </td>
+                            <td class="TD_STYLE2">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="TD_STYLE1">
+                                备注
+                            </td>
+                            <td colspan="7" class="TD_STYLE2">
+                                <textarea asp-for="@item.Remark" rows="4" class="INPUT_STYLE2"></textarea>
+                                <span asp-validation-for="@item.Remark"></span>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="TD_STYLE1">
+                            序号
+                        </td>
+                        <td colspan="3" class="TD_STYLE1">
+                            薪酬项目名称
+                        </td>
+                        <td colspan="4" class="TD_STYLE1">
+                            金额
+                        </td>
+                    </tr>
+                    @foreach (var item2 in Model.Salary_standard_details)
+                    {
+                        <tr class="TD_STYLE2">
+                            <td align="center">
+                                <input asp-for="@item2.Sdt_id" hidden="hidden" />
+                                <input asp-for="@item2.Item_id" type="text" class="INPUT_STYLE2" style="border:0;" />
+                            </td>
+                            <td colspan="3">
+                                <input asp-for="@item2.Item_name" class="INPUT_STYLE2" style="border:0;" />
+                            </td>
+                            <td>
+                                <input asp-for="@item2.Salary" class="INPUT_STYLE2" />
+                            </td>
+                            <td colspan="3">
+                                &nbsp;
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </form>
+        </div>
+        <script type="text/javascript">
+            $("input[name='item2.Salary']").keyup(function () {
+                var t = this;
+                var shu = $(this).val();
+                if (isNaN(shu) || shu < 0) {
+                    alert("金额填写错误!");
+                    t.value = "0.00";
+                }
+                var sum = 0;
+                var len = $('input[name="item2.Salary"]');
+                for (var i = 0; i < len.length; i++) {
+                    var salary = $("input[name='item2.Salary']").eq(i).val();
+                    if (salary == "") {
+                        salary = "0.00";
+                    }
+                    sum = Number(sum) + Number(salary);
+                }
+                document.getElementById("item_Salary_sum").value = sum;
+            });
+            function time() {
+                var tdate = document.getElementById("item_Change_time");
+                var d = new Date();
+                var y = d.getFullYear();
+                var moth = d.getMonth() + 1;
+                var date = d.getDate();
+                var h = d.getHours();
+                var m = d.getMinutes();
+                var s = d.getSeconds();
+                var hh = 20 - 1 - h;
+                var mm = 60 - 1 - m;
+                var ss = 60 - s;
+                if (hh > 0) {
+                    mm = mm + 60 * hh;
+                }
+                if (moth < 10) {
+                    moth = "0" + moth;
+                }
+                if (date < 10) {
+                    date = "0" + date;
+                }
+                if (h < 10) {
+                    h = "0" + h;
+                }
+                if (m < 10) {
+                    m = "0" + m;
+                }
+                if (s < 10) {
+                    s = "0" + s;
+                }
+                if (mm < 10) {
+                    mm = "0" + mm;
+                }
+                if (ss < 10) {
+                    ss = "0" + ss;
+                }
+
+                tdate.value = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+
+            }
+            window.onload = time;
+            var out = window.setInterval(time, 1000);
+        </script>
+    </div>
+</body>
+</html>
+

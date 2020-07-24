@@ -1,0 +1,111 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register_list</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <STYLE type="text/css">
+        td {
+            text-align: center
+        }
+    </STYLE>
+</head>
+<body>
+    <div id="div1">
+        <table width="100%">
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    <font color="black">
+                        您正在做的业务是：人力资源--薪酬标准管理--薪酬发放登记(负责人控制)
+                    </font>
+                </td>
+            </tr>
+        </table>
+        <br>
+        薪酬总数:<font style="color: maroon;font-weight: bold;">{{index}}</font>，
+        总人数:<font style="color: maroon;font-weight: bold;">{{ZRen}}</font>，
+        基本薪酬总数:<font style="color: maroon;font-weight: bold;">{{JBMoney}}</font>，
+        实发总额:<font style="color: maroon;font-weight: bold;">{{SFMoney}}</font>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+
+            <tr>
+                <td width="10%" class="TD_STYLE1">
+                    <span>序号</span>
+                </td>
+                <td width="40%" class="TD_STYLE1">
+                    <span v-if="SelectId==1">I级机构名称</span>
+                    <span v-if="SelectId==2">II级机构名称</span>
+                    <span v-if="SelectId==3">III级机构名称</span>
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    <span>人数</span>
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    基本薪酬总额(元)
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    登记
+                </td>
+            </tr>
+            <tr class="TD_STYLE2" v-for="(item,index) in dt">
+                <td>
+                    {{index+1}}
+                </td>
+                <td>
+                    {{item.Fname}}
+                </td>
+                <td>
+                    {{item.count}}
+                </td>
+                <td>
+                    {{item.salarysum}}
+                </td>
+                <td>
+                    <a :href="'/SalaryGrant/Register_commit/?Fname='+[item.Fname]">登记</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                dt: [],
+                JBMoney: "",
+                SFMoney: "",
+                ZRen: "",
+                SelectId: "",
+                index:"",
+            },
+            methods: {
+                Fill: function () {
+                    var v = this;
+                    $.ajax({
+                        url: "/SalaryGrant/Register_list",
+                        type: "post",
+                        success: function (msg) {
+                            var result = eval("(" + msg + ")");
+                            console.info(msg);
+                            v.dt = result.dt;
+                            v.JBMoney = result.JBMoney;
+                            v.SFMoney = result.SFMoney;
+                            v.ZRen = result.ZRen;
+                            v.SelectId = result.selectId;
+                            v.index = result.index;
+                        }
+                    });
+                }
+            },
+            mounted: function () {
+                this.Fill();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Salarystandard_query_success</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script type="text/javascript">
+            setTimeout(function () {
+                window.location.href = '/SalaryCriterion/Salarystandard_change_locate';
+            }, 3000);
+    </script>
+</head>
+<body>
+    <div>
+        <form  method="post">
+            <table width="100%">
+                <tr>
+                    <td colspan="2">
+                        <font color="#0000CC">您正在做的业务是：人力资源--薪酬标准管理--薪酬标准打印 </font>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td width="49%"> 打印成功,3秒跳转变更页面</td>
+                    <td width="51%" align="right">
+                        <input type="button"
+                               class="BUTTON_STYLE1"
+                               onclick="javascript:window.location='/SalaryCriterion/Salarystandard_query_locate';"
+                               value="返回" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+

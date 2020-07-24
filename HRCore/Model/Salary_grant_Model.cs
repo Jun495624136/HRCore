@@ -31,8 +31,10 @@ namespace Model
         [Key]
         public int Sgr_id { get; set; }
         public string Salary_grant_id { get; set; }
+        [Required(ErrorMessage = "薪酬编号不能为空")]
         public string Salary_standard_id { get; set; }
         public string First_kind_id { get; set; }
+        [Required(ErrorMessage = "关键字不能为空")]
         public string First_kind_name { get; set; }
         public string Second_kind_id { get; set; }
         public string Second_kind_name { get; set; }

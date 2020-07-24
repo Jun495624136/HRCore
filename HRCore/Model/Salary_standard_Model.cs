@@ -28,6 +28,7 @@ namespace Model
     {
         [Key]
         public int Ssd_id { get; set; }
+        [Required(ErrorMessage = "薪酬标准编号不能为空")]
         public string Standard_id { get; set; }
         [Required(ErrorMessage = "薪酬标准单名称不能为空")]
         public string Standard_name { get; set; }
@@ -39,6 +40,7 @@ namespace Model
         public string Checker { get; set; }
         [Required(ErrorMessage = "变更人不能为空")]
         public string Changer { get; set; }
+        [Required(ErrorMessage = "时间不能为空")]
         public DateTime Regist_time { get; set; }
         public DateTime Check_time { get; set; }
         public DateTime Change_time { get; set; }
@@ -47,6 +49,7 @@ namespace Model
         public int Change_status { get; set; }
         [Required(ErrorMessage = "复核建议不能为空")]
         public string Check_comment { get; set; }
+        [Required(ErrorMessage = "备注不能为空")]
         public string Remark { get; set; }
     }
 }

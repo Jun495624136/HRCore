@@ -1,0 +1,236 @@
+﻿
+<!DOCTYPE html>
+@using System.Data
+@model Salary_standard_Model
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Salarystandard_register</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <script src="~/JS/jquery.validate.js"></script>
+    <script src="~/JS/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div id="div1">
+        <form method="post" asp-action="Salarystandard_register" asp-controller="SalaryCriterion">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">
+                            您正在做的业务是：人力资源--薪酬标准管理--薪酬标准登记
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="提 交" class="BUTTON_STYLE1">
+                        <input type="reset" value="返 回" class="BUTTON_STYLE1">
+                    </td>
+                </tr>
+            </table>
+            <table id="stable" width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td width="74" class="TD_STYLE1">
+                        薪酬标准编号
+                    </td>
+                    <td width="168" class="TD_STYLE2">
+                        <input asp-for="@Model.Standard_id" value="@ViewBag.BH" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td width="83" class="TD_STYLE1">
+                        薪酬标准名称
+                    </td>
+                    <td width="171" class="TD_STYLE2">
+                        <input asp-for="@Model.Standard_name" class="INPUT_STYLE2">
+                        <span asp-validation-for="@Model.Standard_name"></span>
+                    </td>
+                    <td width="170" class="TD_STYLE1">
+                        薪酬总额
+                    </td>
+                    <td width="138" class="TD_STYLE2">
+                        <input asp-for="@Model.Salary_sum" value="0.0" readonly class="INPUT_STYLE2" />
+                    </td>
+                    <td width="103" class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td width="95" height="26" class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        制定人
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input asp-for="@Model.Designer" class="INPUT_STYLE2">
+                        <span asp-validation-for="@Model.Designer"></span>
+                    </td>
+                    <td class="TD_STYLE1">
+                        登记人
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input asp-for="@Model.Register" value="@ViewBag.Name" readonly="readonly" class="INPUT_STYLE2">
+                        <span asp-validation-for="@Model.Register"></span>
+                    </td>
+                    <td class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input asp-for="@Model.Regist_time" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        备注
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <textarea asp-for="@Model.Remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                        <span asp-validation-for="@Model.Remark"></span>
+                    </td>
+                </tr>
+            </table>
+            <div id="Dan">
+                <div id="XinC">
+                    <input id="maincheck" name="maincheck" type="checkbox" value="全选" />全选
+                    <input id="Button1CZ" type="button" value="请选择薪酬组成" />
+                </div>
+                <div id="checkboxID">
+                    <input id="NameId1" name="NameId" type="checkbox" value="基本工资" />基本工资
+                    <input id="NameId2" name="NameId" type="checkbox" value="岗位工资" />岗位工资
+                    <input id="NameId3" name="NameId" type="checkbox" value="交通补助" />交通补助
+                    <input id="NameId4" name="NameId" type="checkbox" value="午餐补助" />午餐补助
+                    <input id="NameId5" name="NameId" type="checkbox" value="五险一金" />五险一金
+                    <input id="NameId6" name="NameId" type="checkbox" value="年终奖" />年终奖
+                </div>
+            </div>
+            <div id="table_carear" hidden="hidden"></div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#maincheck").click(function () {
+                if (this.checked == true) {
+                    $("#checkboxID :checkbox").prop("checked", true);
+                }
+                else {
+                    $("#checkboxID :checkbox").prop("checked", false);
+                }
+            });
+
+            $("input[name^='NameId']").click(function () {
+                var check = $("input[name^='NameId']").length;
+                var check1 = $("input[name^='NameId']:checked").length;
+                if (!this.checked) {
+                    $("#maincheck").prop("checked", false);
+                } else if (check == check1) {
+                    $("#maincheck").prop("checked", true);
+                }
+            });
+
+            //点击薪酬组成生成动态表格
+            $("#Button1CZ").click(function () {
+                var XZche = $("input[name^='NameId']:checked");
+                for (var ii = 0; ii < XZche.length; ii++) {
+                    if (XZche[ii].checked == true) {
+                        $("#Dan").hide();
+                        $("#table_carear").show();
+                        var table = $('<table width="100%" border="1" cellpadding=0 cellspacing=1 bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1"  ></table>');
+                        $("#table_carear").append(table);
+                        var tr = $('<tr class="TD_STYLE1"></tr>');
+                        var td = $('<td align="center">序号</td>');
+                        var td1 = $('<td>薪酬项目名称</td>');
+                        var td2 = $('<td colspan="3">金额</td>');
+                        tr.append(td, td1, td2);
+                        $("#table_carear table").append(tr);
+
+                        //根据checkbox复选框选中的值生成动态表格
+                        var checkbox = $("input[name^='NameId']:checked");
+                        for (var i = 0; i < checkbox.length; i++) {
+                            var tr = $('<tr class="TD_STYLE2"></tr>');
+                            var td = $('<td align="center">' + (i + 1) + '<input type="hidden" name="details.itemId" value="' + (i + 1) + '"></td>');
+                            var td1 = $(' <td colspan="3">' + checkbox[i].value + '<input type="hidden" id="details' + (i + 1) + '" name="details.itemName" value="' + checkbox[i].value + '"></td>');
+                            var td2 = $(' <td><input type="text" id="salary' + (i + 1) + '" value="0.00" name="details.salary" onkeyup="countMoney(this)"  class="INPUT_STYLE2"></td>');
+                            tr.append(td, td1, td2);
+                            $("#table_carear table").append(tr);
+                        }
+                        return true;
+                    }
+
+                }
+                alert("请先勾选薪酬的组成!!!");
+            });
+
+        });
+
+        function countMoney(obj) {
+            var shu = $(obj).val();
+            if (isNaN(shu) || shu < 0) {
+                alert("金额填写错误!");
+                obj.value = "0.00";
+            }
+            var sum = 0;
+            var len = $("input[name='details.salary']");
+            for (var i = 0; i < len.length; i++) {
+                var salary = $("input[name='details.salary']").eq(i).val();
+                if (salary == "") {
+                    salary = "0.00";
+                }
+                sum = Number(sum) + Number(salary);
+            }
+            document.getElementById("Salary_sum").value = sum;
+        }
+
+        function time() {
+            var tdate = document.getElementById("Regist_time");
+            var d = new Date();
+            var y = d.getFullYear();
+            var moth = d.getMonth() + 1;
+            var date = d.getDate();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var hh = 20 - 1 - h;
+            var mm = 60 - 1 - m;
+            var ss = 60 - s;
+            if (hh > 0) {
+                mm = mm + 60 * hh;
+            }
+            if (moth < 10) {
+                moth = "0" + moth;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            if (ss < 10) {
+                ss = "0" + ss;
+            }
+
+            tdate.value = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+
+        }
+        window.onload = time;
+        var out = window.setInterval(time, 1000);
+    </script>
+</body>
+</html>

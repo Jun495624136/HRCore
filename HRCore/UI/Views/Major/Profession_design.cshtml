@@ -1,0 +1,97 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Profession_design</title>
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="div1">
+        @*<form method="get" asp-action="">*@
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--职称设置
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="80%" class="TD_STYLE1">
+                    职称名称
+                </td>
+                <td width="20%" class="TD_STYLE1" align="center">
+                    删除
+                </td>
+            </tr>
+            <tr v-for="(item,index) in dt">
+                <td class="TD_STYLE2">
+                    {{item.Attribute_name}}
+                </td>
+                <td class="TD_STYLE2" align="center">
+                    <a href="#" v-on:click="Del([item.Pbc_id])">删除</a>
+                </td>
+            </tr>
+        </table>
+        @*</form>*@
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var vm = new Vue({
+                el: "#div1",
+                data: {
+                    dt:[],
+                },
+                methods: {
+                    Fill: function () {
+                        var v = this;
+                        $.ajax({
+                            url: "http://localhost:58276/api/ConfigpublicChar",
+                            type: "get",
+                            success: function (msg) {
+                                var result = eval("(" + msg + ")");
+                                v.dt = result;
+                                console.info(msg);
+                            }
+                        });
+                    },
+                    Del: function (obj) {
+                        var v = this;
+                        if (confirm('确定要删除吗?')) {
+                             $.ajax({
+                                url: "http://localhost:58276/api/ConfigpublicChar?Pid=" + obj,
+                                type: "DELETE",
+                                success: function (msg) {
+                                    console.info(msg);
+                                    if (msg > 0) {
+                                        alert("删除成功");
+                                        v.Fill();
+                                    } else {
+                                        alert("删除失败");
+                                    }
+                                }
+                            });
+                        }
+                    },
+                },
+                mounted: function () {
+                    this.Fill();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

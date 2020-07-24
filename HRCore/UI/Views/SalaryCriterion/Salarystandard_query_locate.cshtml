@@ -1,0 +1,71 @@
+﻿
+<!DOCTYPE html>
+@model Salary_standard_Model
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Salarystandard_query_locate</title>
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/DatePicker/WdatePicker.js"></script>
+    <script src="~/JS/jquery.validate.js"></script>
+    <script src="~/JS/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div>
+        <form method="post" action="">
+            <input type="hidden" name="page.startPage" value="0">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准查询</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="right">
+                            <input type="submit" value="查询" class="BUTTON_STYLE1" />
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE2">
+                <tr>
+                    <td width="20%" class="TD_STYLE1">
+                        请输入薪酬标准编号
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input asp-for="@Model.Standard_id" class="INPUT_STYLE1">
+                        <span asp-validation-for="@Model.Standard_id"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请输入关键字
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input asp-for="@Model.Designer" class="INPUT_STYLE1">
+                        <span asp-validation-for="@Model.Designer"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请输入建档时间
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <input name="date_start" onclick="WdatePicker()" type="text" class="INPUT_STYLE2" readonly="readonly" id="date_start" style="width:24% " value="" size="30">
+                        至
+                        <input type="text" name="date_end" onclick="WdatePicker()" value="" style="width:24% " readonly="readonly" class="INPUT_STYLE2" id="date_end">
+                        （YYYY-MM-DD）
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>
+

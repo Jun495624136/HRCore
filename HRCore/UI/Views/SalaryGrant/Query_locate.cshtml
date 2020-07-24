@@ -1,0 +1,88 @@
+﻿
+<!DOCTYPE html>
+@model Salary_grant_Model
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Query_locate</title>
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/DatePicker/WdatePicker.js"></script>
+    <script src="~/JS/jquery.validate.js"></script>
+    <script src="~/JS/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <form method="post" asp-action="Query_locate">
+        <input type="hidden" name="page.startPage" value="0">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放查询</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">
+                        <input type="submit" value="查询" class="BUTTON_STYLE1">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="20%" class="TD_STYLE1">
+                    请输入薪酬单号:
+                </td>
+                <td class="TD_STYLE2">    
+                    <input asp-for="@Model.Salary_standard_id" class="INPUT_STYLE1" />
+                    <span asp-validation-for="@Model.Salary_standard_id"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请输入关键字:
+                </td>
+                <td class="TD_STYLE2">
+                    <input asp-for="@Model.First_kind_name" class="INPUT_STYLE1">
+                    <span asp-validation-for="@Model.First_kind_name"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请输入发放时间:
+                </td>
+                <td width="70%" class="TD_STYLE2">
+                    <select name="startDate" style="width:80px">
+                        <option value="2015">2015年</option>
+                        <option value="2016">2016年</option>
+                        <option value="2017">2017年</option>
+                        <option value="2018">2018年</option>
+                        <option value="2019">2019年</option>
+                        <option value="2020">2020年</option>
+                    </select>
+                    @*<input name="startDate" onclick="WdatePicker()" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " size="30">*@
+                    至 
+                    @*<input type="text" name="endDate" onclick="WdatePicker()" style="width:24% " class="INPUT_STYLE2">*@
+                      <select name="endDate" style="width:80px">
+                          <option value="1">1月</option>
+                          <option value="2">2月</option>
+                          <option value="3">3月</option>
+                          <option value="4">4月</option>
+                          <option value="5">5月</option>
+                          <option value="6">6月</option>
+                          <option value="7">7月</option>
+                          <option value="8">8月</option>
+                          <option value="9">9月</option>
+                          <option value="10">10月</option>
+                          <option value="11">11月</option>
+                          <option value="12">12月</option>
+                      </select>
+                    （YYYY-MM-DD）
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
