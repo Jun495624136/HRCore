@@ -1,0 +1,300 @@
+﻿@model Engage_major_release_Model
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>position_register</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/JS/vue.js"></script>
+    <script src="~/JS/jquery-1.11.1.js"></script>
+
+    <script src="~/DatePicker/WdatePicker.js"></script>
+    <script src="~/javascript/locate.js"></script>
+    <script src="~/javascript/select.js"></script>
+    <script src="~/javascript/easyui/comm/comm.js"></script>
+    <script src="~/JS/vue-2.4.0.js"></script>
+    <script src="~/JS/jquery.validate.js"></script>
+    <script src="~/JS/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        window.onload = check;
+        function tick() {
+            var now = new Date();
+            var hours, minutes, seconds, noon;
+            var intHours, intMinutes, intSeconds;
+            intHours = now.getHours();
+            intMinutes = now.getMinutes();
+            intSeconds = now.getSeconds();
+            if (intHours < 24) {
+                hours = intHours + ":";
+                noon = "A.M.";
+            } else {
+                intHours = intHours - 24;
+                hours = intHours + ":";
+                noon = "P.M.";
+            }
+            if (intMinutes < 10) {
+                minutes = "0" + intMinutes + ":";
+            } else {
+                minutes = intMinutes + ":";
+            }
+            if (intSeconds < 10) {
+                seconds = "0" + intSeconds + " ";
+            } else {
+                seconds = intSeconds + " ";
+            }
+            timeString = hours + minutes + seconds;
+            var now = new Date();
+            document.getElementById("nowTime").value = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + timeString;
+            window.setTimeout("tick();", 1000);
+        }
+
+        //load事件
+        function check() {
+            //获得系统当前时间的方法
+            tick();
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+        
+            <form name="humanfileForm" method="post" asp-action="position_register">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <font color="black">您正在做的业务是：人力资源--招聘管理--职位发布管理--职位发布登记 </font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <input type="submit" value="提交" class="BUTTON_STYLE1" />
+
+                            <input type="reset" value="清除" class="BUTTON_STYLE1">
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" border="1" cellpadding=0 cellspacing=1
+                       bordercolorlight=#848284 bordercolordark=#eeeeee
+                       class="TABLE_STYLE1">
+                    <tr>
+                        <td class="TD_STYLE1" width="11%">
+                            I级机构
+                        </td>
+                        <td width="10%" class="TD_STYLE2">
+
+                            <select v-on:change="load2()" name="emajorRelease.firstKindId" id="Did" class="SELECT_STYLE1">
+                                <option value="">--请选择--</option>
+
+                                <option v-for="(item,index) in dt" id="ss" :value="item.First_kind_id">{{item.First_kind_name}}</option>
+
+
+                            </select>
+                        </td>
+                        <td width="11%" class="TD_STYLE1">
+                            II级机构
+                        </td>
+                        <td width="14%" class="TD_STYLE2">
+                            <select name="emajorRelease.secondKindId" id="id2" class="SELECT_STYLE1" v-on:change="load3()">
+                                <option value="">--请选择--</option>
+                                <option v-for="(item,index) in dt2" :value="item.Second_kind_id">{{item.Second_kind_name}}</option>
+                            </select>
+                        </td>
+                        <td width="11%" class="TD_STYLE1">
+                            III级机构
+                        </td>
+                        <td width="14%" class="TD_STYLE2">
+                            <select name="emajorRelease.thirdKindId" id="id3" class="SELECT_STYLE1">
+                                <option value="">--请选择--</option>
+                                <option v-for="(item,index) in dt3" :value="item.Third_kind_id">{{item.Third_kind_name}}</option>
+                            </select>
+                        </td>
+                        <td width="11%" class="TD_STYLE1">
+                            招聘类型
+                        </td>
+                        <td class="TD_STYLE2" colspan="2">
+                            @Html.DropDownListFor(e => e.Engage_type, new SelectList(ViewBag.hard_value, "Value", "Text"), "请选择", new { @class = "SELECT_STYLE1", @Value = "--请选择--" })
+                            @Html.ValidationMessageFor(e => e.Engage_type)
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            职位分类
+                        </td>
+                        <td class="TD_STYLE2">
+                            <select name="major_kind" id="id4" class="SELECT_STYLE1" v-on:change="load5()">
+                                <option value="">请选择</option>
+                                <option v-for="(item,index) in dt4" :value="item.Major_kind_id">{{item.Major_kind_name}}</option>
+
+                            </select>
+                        </td>
+                        <td class="TD_STYLE1">
+                            职位名称
+                        </td>
+                        <td class="TD_STYLE2">
+                            <select name="major_name" id="id5" class="SELECT_STYLE1">
+                                <option value="">请选择</option>
+                                <option v-for="(item,index) in dt5" :value="item.Major_id">{{item.Major_name}}</option>
+
+                            </select>
+                        </td>
+                        <td class="TD_STYLE1">
+                            招聘人数
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@Model.Human_amount" class="INPUT_STYLE2"/>
+                            <span asp-validation-for="@Model.Human_amount"></span>
+                            @*@Html.TextBoxFor(e => e.Human_amount, new { @class = "INPUT_STYLE2" })
+                            @Html.ValidationMessageFor(e => e.Human_amount)*@
+                        </td>
+                        <td class="TD_STYLE1">
+                            截止日期
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@Model.Deadline" class="INPUT_STYLE2" onclick="WdatePicker()"/>
+                            <span asp-validation-for="@Model.Deadline"></span>
+                            @*@Html.TextBoxFor(e => e.Deadline, new { @class = "INPUT_STYLE2" })*@
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            登记人
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => e.Register, ViewData["o"] as IEnumerable<SelectListItem>, "请选择", new { @class = "SELECT_STYLE1", Value = ViewBag.name })
+                            @Html.ValidationMessageFor(e => e.Register)
+                        </td>
+                        <td class="TD_STYLE1">
+                            登记时间
+                        </td>
+                        <td class="TD_STYLE2">
+
+                            @Html.TextBoxFor(e => e.Regist_time, new { @class = "INPUT_STYLE2", @readonly = "readonly", @id = "nowTime" })
+                        </td>
+
+                        <td>&nbsp; </td>
+                        <td>&nbsp; </td>
+                        <td>&nbsp; </td>
+                        <td>&nbsp; </td>
+
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            职位描述
+                        </td>
+                        <td class="TD_STYLE2" colspan="8">
+                            <textarea rows="4" asp-for="@Model.Major_describe" class="TEXTAREA_STYLE1"></textarea>
+                            <span asp-validation-for="@Model.Major_describe"></span>
+                            @*@Html.TextAreaFor(e => e.Major_describe, new { @class = "TEXTAREA_STYLE1" })
+                            @Html.ValidationMessageFor(e => e.Major_describe)*@
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            招聘要求
+                        </td>
+                        <td class="TD_STYLE2" colspan="8">
+                            <textarea rows="4"asp-for="@Model.Engage_required" class="TEXTAREA_STYLE1"></textarea>
+                            <span asp-validation-for="@Model.Engage_required"></span>
+                            @*@Html.TextAreaFor(e => e.Engage_required, new { @class = "TEXTAREA_STYLE1" })
+                            @Html.ValidationMessageFor(e => e.Engage_required)*@
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+        
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                dt: [],
+                dt2: [],
+                dt3: [],
+                dt4: [],
+                dt5: [],
+                id: "",
+                id2: "",
+                id4: "",
+                id5: "",
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/position/position_registerFirst",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt = d;
+
+                        }
+                    });
+                },
+                load2: function () {
+                    var t = this;
+                    //alert($("#Did").val() + "---" + $("#ss").val());
+                    $.ajax({
+                        data: "id=" + $("#Did").val(),
+                        url: "/position/position_registerSecond",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt2 = arry;
+                        }
+                    })
+                },
+                load3: function () {
+
+
+                    var t = this;
+                    $.ajax({
+                        data: "id=" + $("#id2").val(),
+                        url: "/position/position_registerThird",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt3 = arry;
+                        }
+                    })
+                },
+                load4: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/position/position_registerMakind",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt4 = d;
+
+                        }
+                    });
+                },
+                load5: function () {
+                    id4 = $("#id4").val();
+                    var t = this;
+                    $.ajax({
+                        data: "id=" + $("#id4").val(),
+                        url: "/position/position_registerMajor",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt5 = arry;
+                        }
+                    })
+                },
+            },
+            mounted: function () {
+                this.load();
+                this.load4();
+
+            }
+        });
+    </script>
+</body >
+</html >

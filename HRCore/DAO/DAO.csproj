@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj" />
+    <ProjectReference Include="..\EFEntity\EFEntity.csproj" />
+    <ProjectReference Include="..\IBLL\IBLL.csproj" />
+    <ProjectReference Include="..\IDAO\IDAO.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
 </Project>

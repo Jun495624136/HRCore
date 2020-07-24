@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using EFEntity;
+using IBLL;
+using IDAO;
+using BLL;
+using DAO;
 namespace WebApi
 {
     public class Startup
@@ -25,6 +29,9 @@ namespace WebApi
             //¶ÁÈ¡Á¬½Ó×Ö·û´®
             var conStr = configuration.GetConnectionString("SqlServerConnection");
             services.AddControllers();
+            services.AddTransient<IUsersBLL, UsersBLL>();
+            services.AddTransient<IUsersDAO, UsersDAO>();
+            services.AddDistributedMemoryCache().AddSession();
             services.AddDbContext<HR_DBContext>();
             //¿çÓò
             services.AddCors(option => option.AddPolicy("AllowCors", bu => bu.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
@@ -39,6 +46,7 @@ namespace WebApi
             }
 
             app.UseRouting();
+            app.UseSession();
             //¿çÓò
             app.UseCors("AllowCors");
             app.UseEndpoints(endpoints =>

@@ -1,0 +1,376 @@
+﻿@model Human_file_Model
+
+<!DOCTYPE html>
+@{
+    var img = ViewBag.img;
+
+    //var dafj = ViewBag.fj;
+
+    //var lj = ViewBag.lj;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>human_check</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript">
+        window.onload = check;
+        function tick() {
+            var now = new Date();
+            var hours, minutes, seconds, noon;
+            var intHours, intMinutes, intSeconds;
+            intHours = now.getHours();
+            intMinutes = now.getMinutes();
+            intSeconds = now.getSeconds();
+            if (intHours < 24) {
+                hours = intHours + ":";
+                noon = "A.M.";
+            } else {
+                intHours = intHours - 24;
+                hours = intHours + ":";
+                noon = "P.M.";
+            }
+            if (intMinutes < 10) {
+                minutes = "0" + intMinutes + ":";
+            } else {
+                minutes = intMinutes + ":";
+            }
+            if (intSeconds < 10) {
+                seconds = "0" + intSeconds + " ";
+            } else {
+                seconds = intSeconds + " ";
+            }
+            timeString = hours + minutes + seconds;
+            var now = new Date();
+            document.getElementById("nowTime").value = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + timeString;
+            window.setTimeout("tick();", 1000);
+        }
+
+        //load事件
+        function check() {
+            //获得系统当前时间的方法
+            tick();
+        }
+    </script>
+</head>
+<body>
+    <form method="post" asp-action="human_check">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案复核 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="复核通过" class="BUTTON_STYLE1" />
+                    <input type="reset" value="清除" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back()">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=3 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1" width="10%">
+                    档案编号
+                </td>
+                <td colspan="6" class="TD_STYLE2">
+                    <input type="hidden" asp-for="@Model.Huf_id" />
+                    <input type="text" asp-for="@Model.Human_id" readonly="readonly" class="INPUT_STYLE2" />
+                </td>
+                <td rowspan="6" width="13%" style="text-align: center;">
+                    <img src="@Model.Human_picture"  style="width:120px;height:150px;" />
+             
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1" width="10%">
+                    I级机构
+                </td>
+                <td width="13%" class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.First_kind_name" readonly="readonly" class="INPUT_STYLE2" />
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="13%" class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Second_kind_name" readonly="readonly" class="INPUT_STYLE2" />
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    III级机构
+                </td>
+                <td class="TD_STYLE2" colspan="2" width="2%">
+                    <input type="text" asp-for="@Model.Third_kind_name" readonly="readonly" class="INPUT_STYLE2" />
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_major_kind_name" readonly="readonly" class="INPUT_STYLE2" />
+                </td>
+                <td class="TD_STYLE1">
+                    职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Hunma_major_name" readonly="readonly" class="INPUT_STYLE2" />
+                </td>
+                <td class="TD_STYLE1">
+                    职称
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_pro_designation, ViewData["sa5"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    姓名
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_name"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    性别
+                </td>
+                <td class="TD_STYLE2">
+                    <select class="SELECT_STYLE1" asp-for="@Model.Human_sex">
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    EMAIL
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_email"
+                           class="INPUT_STYLE2" id="humanEmail">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    电话
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_telephone" class="INPUT_STYLE2" />
+                </td>
+                <td class="TD_STYLE1">
+                    QQ
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_qq"
+                           class="INPUT_STYLE2" id="humanQq">
+                </td>
+                <td class="TD_STYLE1">
+                    手机
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_mobilephone"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    住址
+                </td>
+                <td colspan="3" class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_address"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    邮编
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_postcode"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    国籍
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.TextBoxFor(e => e.Human_nationality, new { @class = "INPUT_STYLE2", @readonly = "readonly" })
+                </td>
+                <td class="TD_STYLE1">
+                    出生地
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_birthplace"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    生日
+                </td>
+                <td width="13%" class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_birthday" readonly="readonly"
+                           class="INPUT_STYLE2" onclick="WdatePicker()">
+                </td>
+                <td width="10%" class="TD_STYLE1">
+                    民族
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_race, ViewData["sa7"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    宗教信仰
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_religion, ViewData["sa8"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+                <td class="TD_STYLE1">
+                    政治面貌
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_party, ViewData["sa9"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+                <td class="TD_STYLE1">
+                    身份证号码
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_id_card"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    社会保障号码
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_society_security_id"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    年龄
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_age"
+                           class="INPUT_STYLE2" id="humanAge">
+                </td>
+                <td class="TD_STYLE1">
+                    学历
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_educated_degree, ViewData["sa10"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+                <td class="TD_STYLE1">
+                    教育年限
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_educated_years, ViewData["sa11"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+                <td class="TD_STYLE1">
+                    学历专业
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_educated_major, ViewData["sa12"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    薪酬标准
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="hidden" asp-for="@Model.Salary_standard_id" />
+                    <select asp-for="@Model.Salary_standard_name" class="SELECT_STYLE1">
+                        <option>薪酬标准1</option>
+                        <option>薪酬标准2</option>
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    开户行
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_bank"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    帐号
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Human_account"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    复核人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Checker"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    复核时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" asp-for="@Model.Check_time"
+                           id="nowTime" readonly="readonly"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    特长
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_speciality, ViewData["sa13"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+                <td class="TD_STYLE1">
+                    爱好
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownListFor(e => e.Human_hobby, ViewData["sa14"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                </td>
+                <td class="TD_STYLE1">
+                    &nbsp;
+                </td>
+                <td class="TD_STYLE2">
+                    &nbsp;
+                </td>
+            </tr>
+            @*<tr>
+                <td class="TD_STYLE1">
+                    档案附件
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <a href="/@lj" target="_blank">@dafj</a>
+                </td>
+            </tr>*@
+            <tr>
+                <td class="TD_STYLE1">
+                    个人履历
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea asp-for="@Model.Human_histroy_records" rows="4"
+                              class="TEXTAREA_STYLE1"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    家庭关系信息
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea asp-for="@Model.Human_family_membership" rows="4"
+                              class="TEXTAREA_STYLE1"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    备注
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea asp-for="@Model.Remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

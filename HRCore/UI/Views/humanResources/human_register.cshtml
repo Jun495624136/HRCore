@@ -1,0 +1,573 @@
+﻿
+@model Model.ViewTable
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>human_register</title>
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script type="text/javascript">
+        
+        function tick() {
+            var now = new Date();
+            var hours, minutes, seconds, noon;
+            var intHours, intMinutes, intSeconds;
+            intHours = now.getHours();
+            intMinutes = now.getMinutes();
+            intSeconds = now.getSeconds();
+            if (intHours < 24) {
+                hours = intHours + ":";
+                noon = "A.M.";
+            } else {
+                intHours = intHours - 24;
+                hours = intHours + ":";
+                noon = "P.M.";
+            }
+            if (intMinutes < 10) {
+                minutes = "0" + intMinutes + ":";
+            } else {
+                minutes = intMinutes + ":";
+            }
+            if (intSeconds < 10) {
+                seconds = "0" + intSeconds + " ";
+            } else {
+                seconds = intSeconds + " ";
+            }
+            timeString = hours + minutes + seconds;
+            var now = new Date();
+            document.getElementById("nowTime").value = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + timeString;
+            window.setTimeout("tick();", 1000);
+        }
+
+        //load事件
+        function check() {
+            //获得系统当前时间的方法
+            tick();
+        }
+        window.onload = check;
+        function getCode() {
+            var ele = $("#item_Human_idcard").val();
+            var birth = ele.substring(6, 10) + "-" + ele.substring(10, 12) + "-" + ele.substring(12, 14);
+
+            $("#item_Human_birthday").val(birth);
+            var sex = "";
+            if (parseInt(ele.substr(16, 1)) % 2 == 1) {
+                sex = "男";
+            } else {
+                sex = "女";
+            }
+            $("#item_Human_sex").val(sex);
+            //获取年龄
+            var myDate = new Date();
+            var month = myDate.getMonth() + 1;
+            var day = myDate.getDate();
+            var age = myDate.getFullYear() - ele.substring(6, 10) - 1;
+            if (ele.substring(10, 12) < month || ele.substring(10, 12) == month && ele.substring(12, 14) <= day) {
+                age++;
+            }
+            $("#item_Human_age").val(age);
+        };
+        function mysubmit() {
+            var isidcard = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/;
+
+            if (document.getElementById("item_Human_name").value == "") {
+                alert("请填写姓名");
+                return false;
+            }
+            if (document.getElementById("item_Human_telephone").value == "") {
+                alert("请填写电话");
+                return false;
+            } else if (isNaN(document.getElementById("item_Human_telephone").value)) {
+                alert("电话号码请填写数字");
+                return false;
+            }
+            if (document.getElementById("item_Human_idcard").value == "") {
+                alert("请填写身份证号码");
+                return false;
+            }
+            if (!isidcard.test(document.getElementById("item_Human_idcard").value)) {
+                alert("请填写正确的18位身份证号码");
+                return false;
+            }
+
+            if (document.getElementById("item_Human_mobilephone").value != "") {
+                if (isNaN(document.getElementById("item_Human_mobilephone").value)) {
+                    alert("手机请填写数字");
+                    return false;
+                }
+            }
+            if (document.getElementById("item_Human_mobilephone").value == "") {
+                alert("请填写手机号码");
+                return false;
+            }
+
+            if (!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(document.getElementById("item_Human_mobilephone").value))) {
+                alert("请填写正确的11位号码");
+                return false;
+            }
+
+            document.fm.submit();
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <form method="post" asp-action="human_register" asp-controller="humanResources">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="提交" class="BUTTON_STYLE1" onclick="return mysubmit()"/>
+                        <input type="reset" value="清除" class="BUTTON_STYLE1" />
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=3 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1" width="11%">
+                        I级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2">
+                        <select v-on:change="load2()" name="emajorRelease.firstKindId" id="Did" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+
+                            <option v-for="(item,index) in dt"  :value="item.First_kind_id">{{item.First_kind_name}}</option>
+
+
+                        </select>
+                        <input type="hidden" name="humanFile.firstKindName" />
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2">
+                        <select name="emajorRelease.secondKindId" id="id2" class="SELECT_STYLE1" v-on:change="load3()">
+                            <option value="">--请选择--</option>
+                            <option v-for="(item,index) in dt2" :value="item.Second_kind_id">{{item.Second_kind_name}}</option>
+                        </select>
+                        <input type="hidden" name="humanFile.secondKindName" />
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        III级机构
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+                        <select name="emajorRelease.thirdKindId" id="id3" class="SELECT_STYLE1" v-on:change="loadKong()">
+                            <option value="">--请选择--</option>
+                            <option v-for="(item,index) in dt3" :value="item.Third_kind_id">{{item.Third_kind_name}}</option>
+                        </select>
+                        <input type="hidden" name="humanFile.thirdKindName" />
+                    </td>
+                    <td rowspan="5" style="text-align: center;">
+                    </td>
+                </tr>
+                @foreach (var item in Model.engage_Resumes)
+                {
+
+                    <tr>
+                        <td class="TD_STYLE1">
+                            职位分类
+                        </td>
+                        <td class="TD_STYLE2">
+                            <select name="major_kind" id="id4" class="SELECT_STYLE1" v-on:change="load5()">
+                                <option value="">请选择</option>
+                                <option v-for="(item,index) in dt4" :value="item.Major_kind_id">{{item.Major_kind_name}}</option>
+
+                            </select>
+                            <input type="hidden" name="humanFile.humanMajorKindName" />
+                        </td>
+                        <td class="TD_STYLE1">
+                            职位名称
+                        </td>
+                        <td class="TD_STYLE2">
+                            <select name="major_name" id="id5" class="SELECT_STYLE1" v-on:change="loadKong2()">
+                                <option value="">请选择</option>
+                                <option v-for="(item,index) in dt5" :value="item.Major_id">{{item.Major_name}}</option>
+
+                            </select>
+                            <input type="hidden" name="humanFile.hunmaMajorName" />
+                        </td>
+                        <td class="TD_STYLE1">
+                            职称
+                        </td>
+                        <td colspan="2" class="TD_STYLE2">
+                            <select name="Human_pro_designation" class="SELECT_STYLE1">
+                                <option value="">请选择</option>
+                                <option value="经理">经理</option>
+                                <option value="工程师">工程师</option>
+                                <option value="助理">助理</option>
+                                <option value="教授">教授</option>
+                                <option value="讲师">讲师</option>
+                                <option value="技术支持">技术支持</option>
+                            </select>
+                            @*@Html.DropDownListFor(e => item.Human_pro_designation, ViewData["sa5"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            姓名
+                        </td>
+                        <td class="TD_STYLE2" name="sss">
+                            <input asp-for="@item.Human_name"
+                                   class="INPUT_STYLE2" />
+                        </td>
+                        <td class="TD_STYLE1">
+                            性别
+                        </td>
+                        <td class="TD_STYLE2">
+                            <select class="SELECT_STYLE1" asp-for="@item.Human_sex" readonly="readonly">
+                                <option value="男" selected="selected">
+                                    男
+                                </option>
+                                <option value="女">
+                                    女
+                                </option>
+                            </select>
+                        </td>
+                        <td class="TD_STYLE1">
+                            EMAIL
+                        </td>
+                        <td colspan="2" class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_email"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            电话
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_telephone"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            QQ
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="Human_qq" class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            手机
+                        </td>
+                        <td colspan="2" class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_mobilephone"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            住址
+                        </td>
+                        <td colspan="3" class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_address"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            邮编
+                        </td>
+                        <td colspan="2" class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_postcode"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            国籍
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_nationality, ViewData["sa6"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                        <td class="TD_STYLE1">
+                            出生地
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_birthplace"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            生日
+                        </td>
+                        <td width="13%" class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_birthday" readonly="readonly"
+                                   class="INPUT_STYLE2" onclick="WdatePicker()">
+                        </td>
+                        <td width="11%" class="TD_STYLE1">
+                            民族
+                        </td>
+                        <td class="TD_STYLE2" width="14%">
+                            @Html.DropDownListFor(e => item.Human_race, ViewData["sa7"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            宗教信仰
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_religion, ViewData["sa8"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                        <td class="TD_STYLE1">
+                            政治面貌
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_party, ViewData["sa9"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                        <td class="TD_STYLE1">
+                            身份证号码
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_idcard" onkeyup="getCode()"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            社会保障号码
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="Human_society_security_id"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="TD_STYLE1">
+                            年龄
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Human_age" readonly="readonly"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            学历
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_educated_degree, ViewData["sa10"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                        <td class="TD_STYLE1">
+                            教育年限
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_educated_years, ViewData["sa11"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                        <td class="TD_STYLE1">
+                            学历专业
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_educated_major, ViewData["sa12"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            薪酬标准
+                        </td>
+                        <td class="TD_STYLE2">
+                            <select asp-for="@item.Demand_salary_standard" class="SELECT_STYLE1">
+                                <option>总裁级别</option>
+                                <option>经理级别</option>
+                                <option>主管级别</option>
+                                <option>职员级别</option>
+                            </select>
+                        </td>
+                        <td class="TD_STYLE1">
+                            开户行
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text"  name="Human_bank"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            帐号
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" name="Human_account"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            登记人
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Register"
+                                   class="INPUT_STYLE2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            建档时间
+                        </td>
+                        <td class="TD_STYLE2">
+                            <input type="text" asp-for="@item.Regist_time" id="nowTime" readonly="readonly"
+                                   class="INPUT_STYLE2">
+                        </td>
+                        <td class="TD_STYLE1">
+                            特长
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_specility, ViewData["sa13"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                        <td class="TD_STYLE1">
+                            爱好
+                        </td>
+                        <td class="TD_STYLE2">
+                            @Html.DropDownListFor(e => item.Human_hobby, ViewData["sa14"] as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", })
+                        </td>
+                        <td class="TD_STYLE1">
+                            &nbsp;
+                        </td>
+                        <td class="TD_STYLE2">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            个人履历
+                        </td>
+                        <td colspan="7" class="TD_STYLE2">
+                            <textarea asp-for="@item.Human_history_records" rows="4"
+                                      class="TEXTAREA_STYLE1"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            家庭关系信息
+                        </td>
+                        <td colspan="7" class="TD_STYLE2">
+                            <textarea name="Human_family_membership" rows="4"
+                                      class="TEXTAREA_STYLE1"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="TD_STYLE1">
+                            备注
+                        </td>
+                        <td colspan="7" class="TD_STYLE2">
+                            <textarea asp-for="@item.Remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                        </td>
+                    </tr>
+
+                }
+            </table>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                dt: [],
+                dt2: [],
+                dt3: [],
+                dt4: [],
+                dt5: [],
+                id: "",
+                id2: "",
+                id4: "",
+                id5: "",
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/humanResources/position_registerFirst",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt = d;
+
+                        }
+                    });
+                },
+                load2: function () {
+                    var t = this;
+                    var s = $("#Did option:selected");
+                    $.ajax({
+                        data: "id=" + $("#Did").val() + "&name=" + s.text(),
+                        url: "/humanResources/position_registerSecond",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt2 = arry;
+                        }
+                    })
+                },
+                load3: function () {
+
+                    var s = $("#id2 option:selected");
+                    var t = this;
+                    $.ajax({
+                        data: "id=" + $("#id2").val() + "&name2=" + s.text(),
+                        url: "/humanResources/position_registerThird",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt3 = arry;
+                        }
+                    })
+                },
+                loadKong: function () {
+                    var s = $("#id3 option:selected")
+                    $.ajax({
+                        data: "&name3=" + s.text(),
+                        url: "/humanResources/xialaKong",
+                        type: "post",
+                        success: function (msg) {
+                            console.info(msg);
+                        }
+                    })
+                },
+                load4: function () {
+
+                    var t = this;
+                    $.ajax({
+                        url: "/humanResources/position_registerMakind",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt4 = d;
+
+                        }
+                    });
+                },
+                load5: function () {
+                    var s = $("#id4 option:selected");
+                    id4 = $("#id4").val();
+                    var t = this;
+                    $.ajax({
+                        data: "id=" + $("#id4").val() + "&majokin=" + s.text(),
+                        url: "/humanResources/position_registerMajor",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt5 = arry;
+                        }
+                    })
+                },
+                loadKong2: function () {
+                    var s = $("#id5 option:selected")
+                    $.ajax({
+                        data: "&majorn=" + s.text(),
+                        url: "/humanResources/ssss",
+                        type: "post",
+                        success: function (msg) {
+                            console.info(msg);
+                        }
+                    })
+                },
+            },
+            mounted: function () {
+                this.load();
+                this.load4();
+
+            }
+        });
+
+
+    </script>
+</body>
+</html>

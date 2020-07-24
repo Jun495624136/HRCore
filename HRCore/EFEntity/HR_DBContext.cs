@@ -113,7 +113,7 @@ namespace EFEntity
 
             var cpk = modelBuilder.Entity<Config_primary_key>();
             cpk.ToTable(nameof(Config_primary_key));
-            cpk.HasKey("Ans_id");
+            cpk.HasKey("Prk_id");
 
             var cmk = modelBuilder.Entity<Config_major_kind>();
             cmk.ToTable(nameof(Config_major_kind));
