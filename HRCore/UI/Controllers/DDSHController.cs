@@ -12,15 +12,15 @@ namespace UI.Controllers
 {
     public class DDSHController : Controller
     {
-        private readonly Major_changeIBLL coreDbContext;
-        private readonly Config_file_first_kindIBLL YJ;
-        private readonly Config_file_second_kindIBLL EJ;
-        private readonly config_file_third_kindIBLL SJ;
-        private readonly Config_majorIBLL cm;
-        private readonly Salary_standardModelIBLL ss;
-        private readonly Major_changeIBLL mc;
-        private readonly Human_fileIBLL hf;
-        public DDSHController(Major_changeIBLL coreDbContext, Config_file_first_kindIBLL YJ, Config_file_second_kindIBLL EJ, config_file_third_kindIBLL SJ, Config_majorIBLL cm, Salary_standardModelIBLL ss,Major_changeIBLL mc, Human_fileIBLL hf)
+        private readonly Major_changeIBLL3 coreDbContext;
+        private readonly Config_file_first_kindIBLL3 YJ;
+        private readonly Config_file_second_kindIBLL3 EJ;
+        private readonly config_file_third_kindIBLL3 SJ;
+        private readonly Config_majorIBLL3 cm;
+        private readonly Salary_standardModelIBLL3 ss;
+        private readonly Major_changeIBLL3 mc;
+        private readonly Human_fileIBLL3 hf;
+        public DDSHController(Major_changeIBLL3 coreDbContext, Config_file_first_kindIBLL3 YJ, Config_file_second_kindIBLL3 EJ, config_file_third_kindIBLL3 SJ, Config_majorIBLL3 cm, Salary_standardModelIBLL3 ss,Major_changeIBLL3 mc, Human_fileIBLL3 hf)
         {
             this.hf = hf;
             this.mc = mc;

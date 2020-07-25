@@ -13,10 +13,10 @@ namespace UI.Controllers
 {
     public class UsereController : Controller
     {
-        private readonly UsersIBLL coreDbContext;
+        private readonly UsersIBLL3 coreDbContext;
         private readonly HR_DBContext tesc;
-        private readonly JueSeIBLL js;
-        public UsereController(UsersIBLL coreDbContext, HR_DBContext tesc, JueSeIBLL js)
+        private readonly JueSeIBLL3 js;
+        public UsereController(UsersIBLL3 coreDbContext, HR_DBContext tesc, JueSeIBLL3 js)
         {
             this.coreDbContext = coreDbContext;
             this.tesc = tesc;

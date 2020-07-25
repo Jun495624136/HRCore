@@ -13,15 +13,15 @@ namespace UI.Controllers
 {
     public class DDSQController : Controller
     {
-        private readonly Config_file_first_kindIBLL YJ;
-        private readonly Config_file_second_kindIBLL EJ;
-        private readonly config_file_third_kindIBLL SJ;
-        private readonly Human_fileIBLL HF;
-        private readonly config_major_kindIBLL cmk;
-        private readonly Config_majorIBLL cm;
-        private readonly Salary_standardModelIBLL ss;
-        private readonly Major_changeIBLL mc;
-        public DDSQController(Config_file_first_kindIBLL YJ, Config_file_second_kindIBLL EJ, config_file_third_kindIBLL SJ, Human_fileIBLL HF, config_major_kindIBLL cmk,Config_majorIBLL cm, Salary_standardModelIBLL ss, Major_changeIBLL mc)
+        private readonly Config_file_first_kindIBLL3 YJ;
+        private readonly Config_file_second_kindIBLL3 EJ;
+        private readonly config_file_third_kindIBLL3 SJ;
+        private readonly Human_fileIBLL3 HF;
+        private readonly config_major_kindIBLL3 cmk;
+        private readonly Config_majorIBLL3 cm;
+        private readonly Salary_standardModelIBLL3 ss;
+        private readonly Major_changeIBLL3 mc;
+        public DDSQController(Config_file_first_kindIBLL3 YJ, Config_file_second_kindIBLL3 EJ, config_file_third_kindIBLL3 SJ, Human_fileIBLL3 HF, config_major_kindIBLL3 cmk,Config_majorIBLL3 cm, Salary_standardModelIBLL3 ss, Major_changeIBLL3 mc)
         {
             this.YJ = YJ;
             this.EJ = EJ;

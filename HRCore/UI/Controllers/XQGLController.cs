@@ -12,9 +12,9 @@ namespace UI.Controllers
 {
     public class XQGLController : Controller
     {
-        private readonly UsersIBLL coreDbContext;
-        private readonly JueSeIBLL JSbl;
-        public XQGLController(UsersIBLL coreDbContext, JueSeIBLL JSbl)
+        private readonly UsersIBLL3 coreDbContext;
+        private readonly JueSeIBLL3 JSbl;
+        public XQGLController(UsersIBLL3 coreDbContext, JueSeIBLL3 JSbl)
         {
             this.coreDbContext = coreDbContext;
             this.JSbl = JSbl;

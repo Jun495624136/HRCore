@@ -13,8 +13,8 @@ namespace UI.Controllers
 {
     public class DDCXController : Controller
     {
-        private readonly Major_changeIBLL HF;
-        public DDCXController(Major_changeIBLL HF) 
+        private readonly Major_changeIBLL3 HF;
+        public DDCXController(Major_changeIBLL3 HF) 
         {
             this.HF = HF;
         }

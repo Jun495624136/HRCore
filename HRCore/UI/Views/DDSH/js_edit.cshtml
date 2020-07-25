@@ -132,7 +132,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <select v-on:change="load2()" name="emajorRelease.firstKindId" id="Did" class="SELECT_STYLE1" asp-for="@Model.New_first_kind_name">
-                            <option v-for="(item,index) in dt" id="ss" :value="item.First_kind_name">{{item.First_kind_name}}</option>
+                            <option v-for="(item,index) in dt" id="ss" value="item.First_kind_name">{{item.First_kind_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1" width="12%">
@@ -140,7 +140,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <select name="emajorRelease.secondKindId" id="id2" class="SELECT_STYLE1" v-on:change="load3()" asp-for="@Model.New_second_kind_name">
-                            <option v-for="(item,index) in dt2" :value="item.Second_kind_name">{{item.Second_kind_name}}</option>
+                            <option v-for="(item,index) in dt2" value="item.Second_kind_name">{{item.Second_kind_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1" width="12%">
@@ -148,7 +148,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <select name="emajorRelease.thirdKindId" id="id3" class="SELECT_STYLE1" asp-for="@Model.New_third_kind_name">
-                            <option v-for="(item,index) in dt3" :value="item.Third_kind_name">{{item.Third_kind_name}}</option>
+                            <option v-for="(item,index) in dt3" value="item.Third_kind_name">{{item.Third_kind_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1" width="8%"></td>
@@ -160,7 +160,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <select v-on:change="load4()" name="emajorRelease.Major_kindId" id="Did1" class="SELECT_STYLE1" asp-for="@Model.New_major_kind_name">
-                            <option v-for="(item,index) in dt4" id="ss" :value="item.Major_kind_name">{{item.Major_kind_name}}</option>
+                            <option v-for="(item,index) in dt4" id="ss" value="item.Major_kind_name">{{item.Major_kind_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1" width="12%">
@@ -168,7 +168,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <select name="emajorRelease.Major_Id" class="SELECT_STYLE1" asp-for="@Model.New_major_name">
-                            <option v-for="(item,index) in dt5" id="ss" :value="item.Major_name">{{item.Major_name}}</option>
+                            <option v-for="(item,index) in dt5" id="ss" value="item.Major_name">{{item.Major_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">
@@ -176,7 +176,7 @@
                     </td>
                     <td class="TD_STYLE2">
                         <select v-on:change="load5()" name="emajorRelease.standardId" id="Did2" class="SELECT_STYLE1" asp-for="@Model.New_salary_standard_name">
-                            <option v-for="(item,index) in dt6" id="ss" :value="item.Standard_name">{{item.Standard_name}}</option>
+                            <option v-for="(item,index) in dt6" id="ss" value="item.Standard_name">{{item.Standard_name}}</option>
                         </select>
                     </td>
                     <td class="TD_STYLE1">

@@ -14,10 +14,10 @@ namespace UI.Controllers
 {
     public class XQSZController : Controller
     {
-        private readonly JueSeIBLL JSbl;
-        private readonly YHquanxianIBLL YH;
+        private readonly JueSeIBLL3 JSbl;
+        private readonly YHquanxianIBLL3 YH;
         private readonly HR_DBContext tesc;
-        public XQSZController(JueSeIBLL JSbl, YHquanxianIBLL YH, HR_DBContext tesc)
+        public XQSZController(JueSeIBLL3 JSbl, YHquanxianIBLL3 YH, HR_DBContext tesc)
         {
             this.YH = YH;
             this.JSbl = JSbl;
