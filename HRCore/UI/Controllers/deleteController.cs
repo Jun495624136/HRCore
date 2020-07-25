@@ -13,15 +13,15 @@ namespace UI.Controllers
 {
     public class deleteController : Controller
     {
-        private readonly IConfig_file_first_kindBLL First;
-        private readonly IConfig_file_second_kindBLL Second;
-        private readonly IConfig_file_third_kindBLL Third;
-        private readonly IConfig_major_kindBLL Makind;
-        private readonly IConfig_majorBLL Major;
-        private readonly IUsersBLL user;
-        private readonly IConfig_public_charBLL Char;
-        private readonly IHuman_fileBLL Files;
-        public deleteController(IHuman_fileBLL Files, IConfig_public_charBLL Char, IUsersBLL user, IConfig_majorBLL Major, IConfig_major_kindBLL Makind, IConfig_file_first_kindBLL First, IConfig_file_second_kindBLL Second, IConfig_file_third_kindBLL Third)
+        private readonly IConfig_file_first_kindBLL1 First;
+        private readonly IConfig_file_second_kindBLL1 Second;
+        private readonly IConfig_file_third_kindBLL1 Third;
+        private readonly IConfig_major_kindBLL1 Makind;
+        private readonly IConfig_majorBLL1 Major;
+        private readonly IUsersBLL1 user;
+        private readonly IConfig_public_charBLL1 Char;
+        private readonly IHuman_fileBLL1 Files;
+        public deleteController(IHuman_fileBLL1 Files, IConfig_public_charBLL1 Char, IUsersBLL1 user, IConfig_majorBLL1 Major, IConfig_major_kindBLL1 Makind, IConfig_file_first_kindBLL1 First, IConfig_file_second_kindBLL1 Second, IConfig_file_third_kindBLL1 Third)
         {
             this.Makind = Makind;
             this.Major = Major;

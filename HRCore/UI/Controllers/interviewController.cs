@@ -13,10 +13,10 @@ namespace UI.Controllers
 {
     public class interviewController : Controller
     {
-        private readonly IEngage_resumeBLL Resume;
-        private readonly IEngage_interviewBLL inter;
-        private readonly IUsersBLL user;
-        public interviewController(IEngage_resumeBLL Resume, IEngage_interviewBLL inter, IUsersBLL user)
+        private readonly IEngage_resumeBLL1 Resume;
+        private readonly IEngage_interviewBLL1 inter;
+        private readonly IUsersBLL1 user;
+        public interviewController(IEngage_resumeBLL1 Resume, IEngage_interviewBLL1 inter, IUsersBLL1 user)
         {
             this.Resume = Resume;
             this.inter = inter;

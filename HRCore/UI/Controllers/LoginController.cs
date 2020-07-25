@@ -12,8 +12,8 @@ namespace UI.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IUsersBLL sa;
-        public LoginController(IUsersBLL sa)
+        private readonly IUsersBLL1 sa;
+        public LoginController(IUsersBLL1 sa)
         {
             this.sa = sa;
         }

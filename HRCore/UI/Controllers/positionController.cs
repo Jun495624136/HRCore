@@ -14,14 +14,14 @@ namespace UI.Controllers
 {
     public class positionController : Controller
     {
-        private readonly IUsersBLL users;
-        private readonly IConfig_file_first_kindBLL First;
-        private readonly IConfig_file_second_kindBLL Second;
-        private readonly IConfig_file_third_kindBLL Third;
-        private readonly IConfig_major_kindBLL Makind;
-        private readonly IConfig_majorBLL Major;
-        private readonly IEngage_major_releaseBLL replease;
-        public positionController(IEngage_major_releaseBLL replease,IConfig_major_kindBLL Makind, IConfig_majorBLL Major, IUsersBLL users, IConfig_file_first_kindBLL First, IConfig_file_second_kindBLL Second, IConfig_file_third_kindBLL Third)
+        private readonly IUsersBLL1 users;
+        private readonly IConfig_file_first_kindBLL1 First;
+        private readonly IConfig_file_second_kindBLL1 Second;
+        private readonly IConfig_file_third_kindBLL1 Third;
+        private readonly IConfig_major_kindBLL1 Makind;
+        private readonly IConfig_majorBLL1 Major;
+        private readonly IEngage_major_releaseBLL1 replease;
+        public positionController(IEngage_major_releaseBLL1 replease,IConfig_major_kindBLL1 Makind, IConfig_majorBLL1 Major, IUsersBLL1 users, IConfig_file_first_kindBLL1 First, IConfig_file_second_kindBLL1 Second, IConfig_file_third_kindBLL1 Third)
         {
             this.Makind = Makind;
             this.Major = Major;

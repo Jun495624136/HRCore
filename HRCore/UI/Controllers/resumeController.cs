@@ -14,12 +14,12 @@ namespace UI.Controllers
 {
     public class resumeController : Controller
     {
-        private readonly IConfig_major_kindBLL Makind;
-        private readonly IConfig_majorBLL Major;
-        private readonly IUsersBLL user;
-        private readonly IConfig_public_charBLL Char;
-        private readonly IEngage_resumeBLL Resume;
-        public resumeController(IConfig_major_kindBLL Makind,IConfig_majorBLL Major,IUsersBLL user, IConfig_public_charBLL Char, IEngage_resumeBLL Resume)
+        private readonly IConfig_major_kindBLL1 Makind;
+        private readonly IConfig_majorBLL1 Major;
+        private readonly IUsersBLL1 user;
+        private readonly IConfig_public_charBLL1 Char;
+        private readonly IEngage_resumeBLL1 Resume;
+        public resumeController(IConfig_major_kindBLL1 Makind,IConfig_majorBLL1 Major,IUsersBLL1 user, IConfig_public_charBLL1 Char, IEngage_resumeBLL1 Resume)
         {
             this.Makind = Makind;
             this.Major = Major;

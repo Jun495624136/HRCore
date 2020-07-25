@@ -29,38 +29,38 @@ namespace UI
         {
             services.AddControllersWithViews();
             var conStr = configuration.GetConnectionString("SqlServerConnection");
-            services.AddTransient<IUsersBLL, UsersBLL>();
-            services.AddTransient<IUsersDAO, UsersDAO>();
+            services.AddTransient<IUsersBLL1, UsersBLL1>();
+            services.AddTransient<IUsersDAO1, UsersDAO1>();
 
-            services.AddTransient<IConfig_file_first_kindBLL, Config_file_first_kindBLL>();
-            services.AddTransient<IConfig_file_first_kindDAO, Config_file_first_kindDAO>();
+            services.AddTransient<IConfig_file_first_kindBLL1, Config_file_first_kindBLL1>();
+            services.AddTransient<IConfig_file_first_kindDAO1, Config_file_first_kindDAO1>();
 
-            services.AddTransient<IConfig_file_second_kindBLL, Config_file_second_kindBLL>();
-            services.AddTransient<IConfig_file_second_kindDAO, Config_file_second_kindDAO>();
+            services.AddTransient<IConfig_file_second_kindBLL1, Config_file_second_kindBLL1>();
+            services.AddTransient<IConfig_file_second_kindDAO1, Config_file_second_kindDAO1>();
 
-            services.AddTransient<IConfig_file_third_kindBLL, Config_file_third_kindBLL>();
-            services.AddTransient<IConfig_file_third_kindDAO, Config_file_third_kindDAO>();
+            services.AddTransient<IConfig_file_third_kindBLL1, Config_file_third_kindBLL1>();
+            services.AddTransient<IConfig_file_third_kindDAO1, Config_file_third_kindDAO1>();
 
-            services.AddTransient<IConfig_major_kindBLL, Config_major_kindBLL>();
-            services.AddTransient<IConfig_major_kindDAO, Config_major_kindDAO>();
+            services.AddTransient<IConfig_major_kindBLL1, Config_major_kindBLL1>();
+            services.AddTransient<IConfig_major_kindDAO1, Config_major_kindDAO1>();
 
-            services.AddTransient<IConfig_majorBLL, Config_majorBLL>();
-            services.AddTransient<IConfig_majorDAO, Config_majorDAO>();
+            services.AddTransient<IConfig_majorBLL1, Config_majorBLL1>();
+            services.AddTransient<IConfig_majorDAO1, Config_majorDAO1>();
 
-            services.AddTransient<IEngage_major_releaseBLL, Engage_major_releaseBLL>();
-            services.AddTransient<IEngage_major_releaseDAO, Engage_major_releaseDAO>();
+            services.AddTransient<IEngage_major_releaseBLL1, Engage_major_releaseBLL1>();
+            services.AddTransient<IEngage_major_releaseDAO1, Engage_major_releaseDAO1>();
 
-            services.AddTransient<IConfig_public_charBLL, Config_public_charBLL>();
-            services.AddTransient<IConfig_public_charDAO, Config_public_charDAO>();
+            services.AddTransient<IConfig_public_charBLL1, Config_public_charBLL1>();
+            services.AddTransient<IConfig_public_charDAO1, Config_public_charDAO1>();
 
-            services.AddTransient<IEngage_resumeBLL, Engage_resumeBLL>();
-            services.AddTransient<IEngage_resumeDAO, Engage_resumeDAO>();
+            services.AddTransient<IEngage_resumeBLL1, Engage_resumeBLL1>();
+            services.AddTransient<IEngage_resumeDAO1, Engage_resumeDAO1>();
 
-            services.AddTransient<IEngage_interviewBLL, Engage_interviewBLL>();
-            services.AddTransient<IEngage_interviewDAO, Engage_interviewDAO>();
+            services.AddTransient<IEngage_interviewBLL1, Engage_interviewBLL1>();
+            services.AddTransient<IEngage_interviewDAO1, Engage_interviewDAO1>();
 
-            services.AddTransient<IHuman_fileBLL, Human_fileBLL>();
-            services.AddTransient<IHuman_fileDAO, Human_fileDAO>();
+            services.AddTransient<IHuman_fileBLL1, Human_fileBLL1>();
+            services.AddTransient<IHuman_fileDAO1, Human_fileDAO1>();
             services.AddDistributedMemoryCache().AddSession();
             services.AddDbContext<HR_DBContext>();
             services.AddSession();
