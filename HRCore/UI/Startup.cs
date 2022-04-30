@@ -13,11 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using EFEntity;
-using IBLL;
-using DAO;
-using IDAO;
-using BLL;
+
 
 namespace UI
 {
@@ -84,15 +80,7 @@ namespace UI
             services.AddTransient<IHuman_fileBLL1, Human_fileBLL1>();
             services.AddTransient<IHuman_fileDAO1, Human_fileDAO1>();
 
-            services.AddControllersWithViews();
-            //读取连接字符串
-            var conStr = configuration.GetConnectionString("SqlServerConnection");
-            services.AddDistributedMemoryCache().AddSession();
-            services.AddDbContext<HR_DBContext>();
-            services.AddSession();
 
-            //services.AddControllersWithViews();
-            services.AddControllersWithViews();
             services.AddTransient<UsersIDAO3, UsersDAO3>();
             services.AddTransient<UsersIBLL3, UsersBLL3>();
             services.AddTransient<JueSeIDAO3, JueSeDAO3>();
@@ -115,10 +103,13 @@ namespace UI
             services.AddTransient<Major_changeIBLL3, Major_changeBLL3>();
             services.AddTransient<YHquanxianIDAO3, YHquanxianDAO3>();
             services.AddTransient<YHquanxianIBLL3, YHquanxianBLL3>();
+
             //读取连接字符串
+            //services.AddSession();
             var conStr = configuration.GetConnectionString("SqlServerConnection");
             services.AddDbContext<HR_DBContext>();
             services.AddDistributedMemoryCache().AddSession();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

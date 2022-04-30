@@ -93,8 +93,9 @@ namespace DAO
         }
         public async Task<int> Add(Users t)
         {
-             coreDbContext.Set<Users>().Add(t);
-            return  coreDbContext.SaveChanges();
+            
+              coreDbContext.Set<Users>().Add(t);
+            return  await coreDbContext.SaveChangesAsync();
         }
         public async Task<int> UserCreate(Users_Model bjm)
         {
