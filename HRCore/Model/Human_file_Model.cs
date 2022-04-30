@@ -56,7 +56,7 @@ namespace Model
     ///* 	bonus_amount : 激励累计次数                                                                   */
     ///* 	training_amount : 培训累计次数                                                                */
     ///* 	file_chang_amount : 档案变更累计次数                                                            */
-    ///* 	human_histroy_records : 简历                                                              */
+    ///* 	human_histroy_records : 简历   human_history_records    Human_history_records                                                       */
     ///* 	human_family_membership : 家庭关系                                                          */
     ///* 	human_picture : 相片                                                                      */
     ///* 	attachment_name : 附件名称                                                                  */
@@ -71,7 +71,7 @@ namespace Model
     ///* 	delete_time : 档案删除时间                                                                    */
     ///* 	recovery_time : 档案恢复时间                                                                  */
     ///* 	human_file_status : 档案状态
-   public class Human_file_Model
+    public class Human_file_Model
     {
         [Key]
         public int Huf_id { get; set; }
@@ -140,5 +140,7 @@ namespace Model
         public DateTime Delete_time { get; set; }
         public DateTime Recovery_time { get; set; }
         public bool Human_file_status { get; set; }
+
+      
     }
 }

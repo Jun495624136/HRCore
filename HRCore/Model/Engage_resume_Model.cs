@@ -114,6 +114,8 @@ namespace Model
         public int Pass_check_status { get; set; }
         public string Pass_checkComment { get; set; }
         public string Pass_passComment { get; set; }
+
+        public Engage_interview_Model Engage_Interview_Model { get; set; }
       
     }
 }

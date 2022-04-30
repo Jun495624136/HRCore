@@ -1,0 +1,225 @@
+﻿
+@model Human_file_Model
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>recovery_locate</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+    <div id="div1">
+        <form method="post" asp-action="recovery_locate">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案删除 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="查询" class="BUTTON_STYLE1" />
+                        <input type="button" value="搜索" class="BUTTON_STYLE1"
+                               onclick="location.href='recovery_keywords'">
+                        <input type="hidden" name="result" value="toQueryList" />
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        请选择员工所在I级机构
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select v-on:change="load2()" name="emajorRelease.firstKindId" id="Did" size="5" class="SELECT_STYLE2">
+                            <option value="">--请选择--</option>
+
+                            <option v-for="(item,index) in dt" :value="item.First_kind_id">{{item.First_kind_name}}</option>
+
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请选择员工所在II级机构
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="emajorRelease.secondKindId" id="id2" class="SELECT_STYLE2" size="5" v-on:change="load3()">
+                            <option value="">--请选择--</option>
+                            <option v-for="(item,index) in dt2" :value="item.Second_kind_id">{{item.Second_kind_name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        请选择员工所在III级机构
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="emajorRelease.thirdKindId" id="id3" class="SELECT_STYLE2" size="5" v-on:change="loadKong()">
+                            <option value="">--请选择--</option>
+                            <option v-for="(item,index) in dt3" :value="item.Third_kind_id">{{item.Third_kind_name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请选择职位分类
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="major_kind" id="id4" class="SELECT_STYLE2" size="5" v-on:change="load5()">
+                            <option value="">请选择</option>
+                            <option v-for="(item,index) in dt4" :value="item.Major_kind_id">{{item.Major_kind_name}}</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td width="16%" class="TD_STYLE1">
+                        请选择职位名称
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <select name="major_name" id="id5" class="SELECT_STYLE2" size="5" v-on:change="loadKong2()">
+                            <option value="">请选择</option>
+                            <option v-for="(item,index) in dt5" :value="item.Major_id">{{item.Major_name}}</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        请输入建档时间
+                    </td>
+                    <td width="84%" class="TD_STYLE2">
+                        <input type="text" name="utilBean.startDate" readonly
+                               style="width: 14%" class="INPUT_STYLE2" asp-for="@Model.Regist_time" onclick="WdatePicker()">
+                        至
+                        <input type="text" name="utilBean.endDate" readonly="readonly"
+                               style="width: 14%" class="INPUT_STYLE2" id="date_end" asp-for="@Model.Regist_time" onclick="WdatePicker()">
+                        <input type="hidden" name="utilBean.datePropertyName" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                dt: [],
+                dt2: [],
+                dt3: [],
+                dt4: [],
+                dt5: [],
+                id: "",
+                id2: "",
+                id4: "",
+                id5: "",
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+
+                    $.ajax({
+                        url: "/delete/position_registerFirst",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt = d;
+
+                        }
+                    });
+                },
+                load2: function () {
+                    var t = this;
+                    var s = $("#Did option:selected");
+                    $.ajax({
+                        data: "id=" + $("#Did").val() + "&name=" + s.text(),
+                        url: "/delete/position_registerSecond",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt2 = arry;
+                        }
+                    })
+                },
+                load3: function () {
+
+                    var s = $("#id2 option:selected");
+                    var t = this;
+                    $.ajax({
+                        data: "id=" + $("#id2").val() + "&name2=" + s.text(),
+                        url: "/delete/position_registerThird",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt3 = arry;
+                        }
+                    })
+                },
+                //loadKong: function () {
+                //    var s = $("#id3 option:selected")
+                //    $.ajax({
+                //        data: "&name3=" + s.text(),
+                //        url: "/humanResources/xialaKong",
+                //        type: "post",
+                //        success: function (msg) {
+                //            console.info(msg);
+                //        }
+                //    })
+                //},
+                load4: function () {
+
+                    var t = this;
+                    $.ajax({
+                        url: "/delete/position_registerMakind",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt4 = d;
+
+                        }
+                    });
+                },
+                load5: function () {
+                    var s = $("#id4 option:selected");
+                    id4 = $("#id4").val();
+                    var t = this;
+                    $.ajax({
+                        data: "id=" + $("#id4").val() + "&majokin=" + s.text(),
+                        url: "/delete/position_registerMajor",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt5 = arry;
+                        }
+                    })
+                },
+                //loadKong2: function () {
+                //    var s = $("#id5 option:selected")
+                //    $.ajax({
+                //        data: "&majorn=" + s.text(),
+                //        url: "/humanResources/ssss",
+                //        type: "post",
+                //        success: function (msg) {
+                //            console.info(msg);
+                //        }
+                //    })
+                //},
+            },
+            mounted: function () {
+                this.load();
+                this.load4();
+
+            }
+        });
+    </script>
+</body>
+</html>

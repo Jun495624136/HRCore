@@ -33,6 +33,7 @@ namespace Model
     {
         [Key]
         public int Mre_id { get; set; }
+       
         public string First_kind_id { get; set; }
         public string First_kind_name { get; set; }
         public string Second_kind_id { get; set; }
@@ -41,16 +42,22 @@ namespace Model
         public string Third_kind_name { get; set; }
         public string Major_kind_id { get; set; }
         public string Major_kind_name { get; set; }
+
         public string Major_id { get; set; }
         public string Major_name { get; set; }
+        [Required(ErrorMessage = "人数不能为空")]
         public int Human_amount { get; set; }
+        
         public string Engage_type { get; set; }
+        [Required(ErrorMessage = "日期不能为空")]
         public DateTime Deadline { get; set; }
         public string Register { get; set; }
         public string Changer { get; set; }
         public DateTime Regist_time { get; set; }
         public DateTime Change_time { get; set; }
+        [Required(ErrorMessage = "描述不能为空")]
         public string Major_describe { get; set; }
+        [Required(ErrorMessage = "要求不能为空")]
         public string Engage_required { get; set; }
     }
 }

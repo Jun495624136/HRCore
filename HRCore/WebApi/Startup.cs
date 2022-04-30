@@ -29,7 +29,8 @@ namespace WebApi
             //¶ÁÈ¡Á¬½Ó×Ö·û´®
             var conStr = configuration.GetConnectionString("SqlServerConnection");
             services.AddControllers();
-            //×¢²áSession
+            services.AddTransient<IUsersBLL1, UsersBLL1>();
+            services.AddTransient<IUsersDAO1, UsersDAO1>();
             services.AddDistributedMemoryCache().AddSession();
             services.AddDbContext<HR_DBContext>();
             //¿çÓò

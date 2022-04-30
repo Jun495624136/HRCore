@@ -60,5 +60,6 @@ namespace Model
         public string Check_comment { get; set; }
         public int Interview_status { get; set; }
         public int Check_status { get; set; }
+        //public Engage_resume_Model engage_Resume_Model { get; set; }
     }
 }
