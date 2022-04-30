@@ -44,14 +44,8 @@ namespace UI
 
             services.AddTransient<IUsers_BLL, Users_BLL>();
             services.AddTransient<IUsers_DAO, Users_DAO>();
-            services.AddControllersWithViews();
-            //读取连接字符串
-            var conStr = configuration.GetConnectionString("SqlServerConnection");
-            services.AddDistributedMemoryCache().AddSession();
-            services.AddDbContext<HR_DBContext>();
 
-            services.AddControllersWithViews();
-            var conStr = configuration.GetConnectionString("SqlServerConnection");
+
             services.AddTransient<IUsersBLL1, UsersBLL1>();
             services.AddTransient<IUsersDAO1, UsersDAO1>();
 
@@ -84,6 +78,10 @@ namespace UI
 
             services.AddTransient<IHuman_fileBLL1, Human_fileBLL1>();
             services.AddTransient<IHuman_fileDAO1, Human_fileDAO1>();
+
+            services.AddControllersWithViews();
+            //读取连接字符串
+            var conStr = configuration.GetConnectionString("SqlServerConnection");
             services.AddDistributedMemoryCache().AddSession();
             services.AddDbContext<HR_DBContext>();
             services.AddSession();
