@@ -15,5 +15,6 @@ namespace Model
         public string URL { get; set; } //  页面路径
         public string state { get; set; } //父子级
         public int JUid { get; set; } //  父级为0   子机值为父级ID
+
     }
 }

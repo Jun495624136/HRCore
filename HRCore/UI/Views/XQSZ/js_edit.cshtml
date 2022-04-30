@@ -1,0 +1,1663 @@
+﻿@model JueSeModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>js_edit</title>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/right_list_information.js"></script>
+    <script src="~/JS/vue.js"></script>
+    <script src="~/JS/jquery-1.11.1.js"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script src="~/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <link href="~/jquery-easyui-1.3.5/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="~/jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
+    <script src="~/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+    <style type="text/css">
+        .parent {
+            margin-left: 50px;
+        }
+
+        .children {
+            margin-left: 20%;
+        }
+    </style>
+    @*<script type="text/javascript">
+            $(function () {
+                $('#tt').tree({
+                    url: "/Usere/indexff",
+                    onClick: function (node) {
+                        console.info(node);
+                        var QuanURL = node.url;
+                        //1 子节点才进行页面跳转
+                        if (QuanURL != null) {
+                            //2  跳转页面的标题
+                            var text = node.text;
+                            if ($("#tabs").tabs('exists', text)) {
+                                $("#tabs").tabs('select', text);
+                            } else {
+                                $('#tabs').tabs('add', {
+                                    title: text,
+                                    closable: true,
+                                    tools: [{
+                                        iconCls: 'icon-mini-refresh',
+                                        handler: function () {
+                                            alert('refresh');
+                                        }
+                                    }]
+                                });
+                            }
+                        }
+
+                    }
+
+
+                });
+
+            })
+        </script>*@
+</head>
+<body>
+    <    <div id="div1">
+        <form id="powerAction!doModifyRight" name="powerAction!doModifyRight" action="success.html" method="post">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--权限管理--编辑角色</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="button" value="保存" class="BUTTON_STYLE1"
+                               onclick="load2()">
+                        <input type="button" value="返回" class="BUTTON_STYLE1"
+                               onclick="history.back()">
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=3 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1">角色编号</td>
+                    <td class="TD_STYLE2">
+                        <input type="text" asp-for="@Model.JueSe_id"
+                               id="ID" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">角色名称</td>
+                    <td class="TD_STYLE2">
+                        <input type="text" asp-for="@Model.JueSe_name"
+                               id="name" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">角色是否可用</td>
+                    <td class="TD_STYLE2">
+                        <select asp-for="@Model.SFky" id="SFky">
+                            <option value="2">否</option>
+                            <option value="1">是</option>
+                        </select>
+
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="1" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="1" />
+                        &#25307;&#32856;&#31649;&#29702;
+                        <table class="parent">
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="2" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="2" />
+                                    &#32844;&#20301;&#21457;&#24067;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="3" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="3" />
+                                                &#32844;&#20301;&#21457;&#24067;&#30331;&#35760;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="4" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="4" />
+                                                &#32844;&#20301;&#21457;&#24067;&#21464;&#26356;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="5" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="5" />
+                                                &#32844;&#20301;&#21457;&#24067;&#26597;&#35810;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="6" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="6" />
+                                    &#31616;&#21382;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="7" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="7" />
+                                                &#31616;&#21382;&#30331;&#35760;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="8" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="8" />
+                                                &#31616;&#21382;&#31579;&#36873;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="9" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="9" />
+                                                &#26377;&#25928;&#31616;&#21382;&#26597;&#35810;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="10" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="10" />
+                                    &#38754;&#35797;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="11" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="11" />
+                                                &#38754;&#35797;&#32467;&#26524;&#30331;&#35760;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="12" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="12" />
+                                                &#38754;&#35797;&#31579;&#36873;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="13" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="13" />
+                                    &#25307;&#32856;&#32771;&#35797;&#39064;&#24211;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="14" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="14" />
+                                                &#35797;&#39064;&#30331;&#35760;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="15" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="15" />
+                                                &#35797;&#39064;&#26597;&#35810;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="16" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="16" />
+                                                &#35797;&#39064;&#21464;&#26356;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="17" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="17" />
+                                    &#25307;&#32856;&#32771;&#35797;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="18" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="18" />
+                                                &#32771;&#35797;&#20986;&#39064;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="19" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="19" />
+                                                &#32771;&#35797;&#31572;&#39064;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="20" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="20" />
+                                                &#32771;&#35797;&#38405;&#21367;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="21" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="21" />
+                                                &#25104;&#32489;&#26597;&#35810;&#31579;&#36873;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="22" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="22" />
+                                    &#24405;&#29992;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="23" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="23" />
+                                                &#24405;&#29992;&#30003;&#35831;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="24" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="24" />
+                                                &#24405;&#29992;&#23457;&#25209;
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="25" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="25" />
+                                                &#24405;&#29992;&#26597;&#35810;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="26" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="26" />
+                        &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#31649;&#29702;
+                        <table class="parent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="27" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="27" />
+                                    &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#30331;&#35760;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="28" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="28" />
+                                    &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#30331;&#35760;&#22797;&#26680;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="29" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="29" />
+                                    &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#26597;&#35810;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="30" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="30" />
+                                    &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#21464;&#26356;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="31" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="31" />
+                                    &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#21024;&#38500;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="32" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="32" />
+                                                &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#21024;&#38500;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="33" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="33" />
+                                                &#26723;&#26696;&#21024;&#38500;&#24674;&#22797;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="34" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="34" />
+                                                &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#27704;&#20037;&#21024;&#38500;
+                                            </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="35" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="35" />
+                        &#34218;&#37228;&#26631;&#20934;&#31649;&#29702;
+                        <table class="parent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="36" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="36" />
+                                    &#34218;&#37228;&#26631;&#20934;&#30331;&#35760;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="37" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="37" />
+                                    &#34218;&#37228;&#26631;&#20934;&#30331;&#35760;&#22797;&#26680;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="38" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="38" />
+                                    &#34218;&#37228;&#26631;&#20934;&#26597;&#35810;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="39" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="39" />
+                                    &#34218;&#37228;&#26631;&#20934;&#21464;&#26356;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="40" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="40" />
+                        &#34218;&#37228;&#21457;&#25918;&#31649;&#29702;
+                        <table class="parent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="41" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="41" />
+                                    &#34218;&#37228;&#21457;&#25918;&#30331;&#35760;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="42" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="42" />
+                                    &#34218;&#37228;&#21457;&#25918;&#30331;&#35760;&#22797;&#26680;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="43" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="43" />
+                                    &#34218;&#37228;&#21457;&#25918;&#26597;&#35810;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="44" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="44" />
+                        &#35843;&#21160;&#31649;&#29702;
+                        <table class="parent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="45" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="45" />
+                                    &#35843;&#21160;&#30331;&#35760;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="46" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="46" />
+                                    &#35843;&#21160;&#23457;&#26680;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="47" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="47" />
+                                    &#35843;&#21160;&#26597;&#35810;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="48" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="48" />
+                        &#23458;&#25143;&#21270;&#35774;&#32622;
+                        <table class="parent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="49" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="49" />
+                                    &#20154;&#21147;&#36164;&#28304;&#26723;&#26696;&#31649;&#29702;&#35774;&#32622;
+                                    <table class="children">
+                                        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="50" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="50" />
+                                                &#8544;&#32423;&#26426;&#26500;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="51" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="51" />
+                                                &#8545;&#32423;&#26426;&#26500;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="52" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="52" />
+                                                &#8546;&#32423;&#26426;&#26500;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="53" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="53" />
+                                                &#32844;&#31216;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="54" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="54" />
+                                                &#32844;&#20301;&#20998;&#31867;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="55" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="55" />
+                                                &#32844;&#20301;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="56" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="56" />
+                                                &#20844;&#20849;&#23646;&#24615;&#35774;&#32622;
+                                            </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="57" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="57" />
+                                    &#34218;&#37228;&#31649;&#29702;&#35774;&#32622;
+                                    <table class="children">
+                                        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="58" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="58" />
+                                                &#34218;&#37228;&#39033;&#30446;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="59" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="59" />
+                                                &#34218;&#37228;&#21457;&#25918;&#26041;&#24335;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="60" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="60" />
+                                                &#35746;&#21333;&#38144;&#21806;&#32489;&#25928;&#35745;&#31639;&#26041;&#24335;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="61" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="61" />
+                                                &#38646;&#21806;&#32489;&#25928;&#35745;&#31639;&#26041;&#24335;
+                                            </td>
+
+
+
+
+
+
+
+
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="62" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="62" />
+                                    &#39064;&#24211;&#31649;&#29702;&#35774;&#32622;
+                                    <table class="children">
+                                        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="63" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="63" />
+                                                &#35797;&#39064;&#8544;&#32423;&#20998;&#31867;&#35774;&#32622;
+                                            </td>
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="64" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="64" />
+                                                &#35797;&#39064;&#8545;&#32423;&#20998;&#31867;&#35774;&#32622;
+                                            </td>
+
+
+
+
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="65" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="65" />
+                                    &#20854;&#20182;&#35774;&#32622;
+                                    <table class="children">
+                                        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <td>
+                                                <input type="checkbox" name="rightCodes" value="66" id="powerAction!doModifyRight_rightCodes" class="children_ck" />
+                                                <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="66" />
+                                                &#20851;&#38190;&#23383;&#26597;&#35810;&#35774;&#32622;
+                                            </td>
+
+
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="67" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="67" />
+                        &#26631;&#20934;&#25968;&#25454;&#25253;&#34920;
+                        <table class="parent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="68" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="68" />
+                                    Excel&#26631;&#20934;&#25968;&#25454;&#25253;&#34920;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="69" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="69" />
+                                    Pdf&#26631;&#20934;&#25968;&#25454;&#25253;&#34920;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="70" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="70" />
+                                    Xml&#26631;&#20934;&#25968;&#25454;&#25253;&#34920;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+
+            <table class="grandfather">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="rightCodes" value="71" id="powerAction!doModifyRight_rightCodes" class="grandfather_ck" />
+                        <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="71" />
+                        &#26435;&#38480;&#31649;&#29702;
+                        <table class="parent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="72" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="72" />
+                                    &#29992;&#25143;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="rightCodes" value="74" id="powerAction!doModifyRight_rightCodes" class="parent_ck" />
+                                    <input type="hidden" id="__checkbox_powerAction!doModifyRight_rightCodes" name="__checkbox_rightCodes" value="74" />
+                                    &#35282;&#33394;&#31649;&#29702;
+                                    <table class="children">
+                                        <tr>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        </form>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                dt: [],
+                id: "",
+                name: "",
+                SFky: "",
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/XQSZ/fxk",
+                        type: "post",
+                        data: "id=" + $("#ID").val(),
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            for (var j = 0; j < d.length; j++) {
+                                var rightCodes = document.getElementById("_easyui_tree_" + (j + 1));
+                                for (var k = 0; k < d.length; k++) {
+                                    if (rightCodes.val == d[j]) {
+                                        rightCodes.checked = true;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                },
+            },
+            mounted: function () {
+                this.load();
+
+            }
+        });
+    </script>
+</body>
+@*UP: function () {
+        var t = this;
+        $.ajax({
+            url: "/XQSZ/UP",
+            type: "post",
+            data: "id=" + t.id + "name=" + t.name + "SFky=" + t.SFky + "SZ=" + t.dt,
+            success: function (msg) {
+                var d = eval("(" + msg + ")");
+
+            }
+        })
+    },
+                        load2: function () {
+        var a = 0;
+        var t = this;
+        t.id = $("#ID").val();
+        t.name = $("#name").val;
+        t.SFky = $("#SFky").val;
+        var rightCodes = document.getElementsByName("rightCodes");
+        for (var k = 0; k < rightCodes.length; k++) {
+            if (rightCodes[k].checked = true) {
+                t.dt[a] = rightCodes[k].val;
+                a++;
+            }
+        }
+    },*@
+</html>

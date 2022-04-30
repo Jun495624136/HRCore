@@ -164,6 +164,7 @@ namespace EFEntity
         public DbSet<JueSe> JueSes { get; set; }
         public DbSet<YHquanxian> YHquanxians { get; set; }
         public DbSet<SFquanxian>  SFquanxians { get; set; }
+        public DbSet<ljsb> ljsb { get; set; }
 
     }
 }

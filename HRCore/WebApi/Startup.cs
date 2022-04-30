@@ -33,6 +33,7 @@ namespace WebApi
             services.AddTransient<IUsersDAO1, UsersDAO1>();
             services.AddDistributedMemoryCache().AddSession();
             services.AddDbContext<HR_DBContext>();
+            services.AddDistributedMemoryCache().AddSession();
             //¿çÓò
             services.AddCors(option => option.AddPolicy("AllowCors", bu => bu.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
         }

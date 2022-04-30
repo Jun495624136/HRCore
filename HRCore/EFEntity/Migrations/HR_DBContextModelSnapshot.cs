@@ -1205,6 +1205,9 @@ namespace EFEntity.Migrations
                     b.Property<string>("JueSe_name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SFky")
+                        .HasColumnType("int");
+
                     b.HasKey("JueSe_id");
 
                     b.ToTable("JueSe");

@@ -1,0 +1,233 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/js/jquery-1.11.1.js"></script>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <link href="~/javascript/calendar/calendar-win2k-cold-1.css" rel="stylesheet" />
+    <script src="~/javascript/calendar/cal.js"></script>
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <link href="~/CSS/cwcalendar.css" rel="stylesheet" />
+    <script src="~/JS/vue.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm("Index1", "DDCX", FormMethod.Post))
+    {
+        <div id="div1">
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--调动管理--调动登记查询 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="查询"
+                               class="BUTTON_STYLE1">
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" name="page.startPage" value="0">
+            <table width="101%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr class="TR_STYLE1">
+                    <td width="13%" class="TD_STYLE1">
+                        请选择员工调动I级机构
+                    </td>
+                    <td width="29%" class="TD_STYLE2">
+                        <select v-on:change="load2()" size="5"  name="configThird.firstKindId" id="dd"  class="SELECT_STYLE2">
+                            <option value="">--请选择--</option>
+                            <option v-for="(item,index) in dt" id="ss" :value="item.First_kind_id">{{item.First_kind_name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td width="13%" class="TD_STYLE1">
+                        请选择员工调动II级机构
+                    </td>
+                    <td width="45%" class="TD_STYLE2">
+                        <select v-on:change="load3()" size="5"  name="configThird.secondKindId" id="id2"  class="SELECT_STYLE2">
+                            <option value="">--请选择--</option>
+                            <option v-for="(item,index) in dt2" :value="item.Second_kind_id">{{item.Second_kind_name}}</option>
+                        </select>
+                    </td>
+                    
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td width="13%" class="TD_STYLE1">
+                        请选择员工调动III级机构
+                    </td>
+                    <td width="29%" class="TD_STYLE2">
+                        <select  size="5" name="configThird.thirdKindId" id="id3"  class="SELECT_STYLE2">
+                            <option value="">--请选择--</option>
+                            <option v-for="(item,index) in dt3" :value="item.Third_kind_id">{{item.Third_kind_name}}</option>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td class="TD_STYLE1">
+                        新职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select v-on:change="load4()" size="5" name="emajorRelease.Major_kindId" id="Did1" class="SELECT_STYLE1">
+                            <option value="">--清选择--</option>
+                            <option v-for="(item,index) in dt4" id="ss" :value="item.Major_kind_name">{{item.Major_kind_name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td class="TD_STYLE1" width="12%">
+                        新职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="emajorRelease.Major_Id" class="SELECT_STYLE1" size="5">
+                            <option value="">--清选择--</option>
+                            <option v-for="(item,index) in dt5" id="ss" :value="item.Major_name">{{item.Major_name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="TR_STYLE1">
+                    <td height="18" class="TD_STYLE1">
+                        请输入建档时间
+                    </td>
+                    <td width="45%" class="TD_STYLE2">
+                        <input name="utilbean.startDate" onclick="aa('utilbean.startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
+                        至<input type="text" name="utilbean.endDate" onclick="aa('utilbean.endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
+                        （YYYY-MM-DD）
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#div1",
+            data: {
+                dt: [],
+                dt2: [],
+                dt3: [],
+                dt4: [],
+                dt5: [],
+                dt6: [],
+                id: "",
+                id2: "",
+                id4: "",
+                id5: "",
+                jiner: "0",
+                m: "",
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+                    //alert("1");
+                    $.ajax({
+                        url: "/DDSQ/first",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt = d;
+
+                        }
+                    });
+                },
+                CMK: function () {
+                    var t = this;
+                    //alert("1");
+                    $.ajax({
+                        url: "/DDSQ/CMK",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt4 = d;
+
+                        }
+                    });
+                },
+                SS: function () {
+                    var t = this;
+                    //alert("1");
+                    $.ajax({
+                        url: "/DDSQ/SS",
+                        type: "post",
+                        success: function (msg) {
+                            var d = eval("(" + msg + ")");
+                            t.dt6 = d;
+
+                        }
+                    });
+                },
+                load5: function () {
+                    var t = this;
+                    //alert($("#Did").val());
+                    $.ajax({
+                        data: "id=" + $("#Did2").val(),
+                        url: "/DDSQ/SS1",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            $("#newsum").val(arry);
+                        }
+                    })
+                },
+                load4: function () {
+                    var t = this;
+                    //alert($("#Did").val());
+                    $.ajax({
+                        data: "id=" + $("#Did1").val(),
+                        url: "/DDSQ/CM",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt5 = arry;
+                        }
+                    })
+                },
+                load2: function () {
+                    var t = this;
+                    //alert($("#Did").val());
+                    $.ajax({
+                        data: "id=" + $("#dd").val(),
+                        url: "/DDSQ/Selfirst",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt2 = arry;
+                        }
+                    })
+                },
+                load3: function () {
+                    var t = this;
+                    //alert($("#id2").val());
+                    $.ajax({
+                        data: "id=" + $("#id2").val() + "&id2=" + $("#dd").val(),
+                        url: "/DDSQ/ThiSecond",
+                        type: "post",
+                        success: function (msg) {
+                            var arry = eval("(" + msg + ")");
+                            t.dt3 = arry;
+                        }
+                    })
+                },
+            },
+            mounted: function () {
+                this.load();
+                this.CMK();
+                this.SS();
+            }
+        });
+    </script>
+</body>
+</html>

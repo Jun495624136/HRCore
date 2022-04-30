@@ -1,0 +1,236 @@
+﻿@model Major_change_Model
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>register</title>
+    <script src="~/js/jquery-1.11.1.js"></script>
+    <link href="~/CSS/table.css" rel="stylesheet" />
+    <link href="~/javascript/calendar/calendar-win2k-cold-1.css" rel="stylesheet" />
+    <script src="~/javascript/calendar/cal.js"></script>
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <link href="~/CSS/cwcalendar.css" rel="stylesheet" />
+    <script src="~/JS/vue.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm("register", "DDSQ", FormMethod.Post))
+    {
+        <div id="div1">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="#0000CC">您正在做的业务是:人力资源--调动管理--调动登记</font>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        <input type="button" class="BUTTON_STYLE1"
+                               onclick="javascript:window.history.back();" value="返回">
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr height="21">
+                    <td class="TD_STYLE1" width="8%">
+                        档案编号
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        <input type="text" asp-for="@Model.Human_id"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="8%">
+                        姓名
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        <input type="text" asp-for="@Model.Human_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                </tr>
+                <tr>
+
+                    <td class="TD_STYLE1" width="8%">
+                        原一级机构
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.First_kind_id">
+                        <input type="text" asp-for="@Model.First_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="8%">
+                        原二级机构
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        <input type="hidden" asp-for="@Model.Second_kind_id">
+                        <input type="text" asp-for="@Model.Second_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="8%">
+                        原三级机构
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        <input type="hidden" asp-for="@Model.Third_kind_id">
+                        <input type="text" asp-for="@Model.Third_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        原职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.Major_kind_id">
+                        <input type="text" asp-for="@Model.Major_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        原职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.Major_id">
+                        <input type="text" asp-for="@Model.Major_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        原薪酬标准
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.Salary_standard_id">
+                        <input type="text" asp-for="@Model.Salary_standard_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        原薪酬总额
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" asp-for="@Model.Salary_sum"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        新一级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.New_first_kind_id">
+                        <input type="text" asp-for="@Model.New_first_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        新二级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.New_second_kind_id">
+                        <input type="text" asp-for="@Model.New_second_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        新三级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.New_third_kind_id">
+                        <input type="text" asp-for="@Model.New_third_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        新职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.New_major_kind_id">
+                        <input type="text" asp-for="@Model.New_major_kind_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        新职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.New_major_id">
+                        <input type="text" asp-for="@Model.New_major_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        新薪酬标准
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" asp-for="@Model.New_salary_standard_id">
+                        <input type="text" asp-for="@Model.New_salary_standard_name"
+                               readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        新薪酬总额
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="newsum" id="newsum" readonly="readonly"
+                               value="@Model.New_salary_sum" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="TD_STYLE1">
+                        登记人
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" value="@Model.Register" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" asp-for="@Model.Regist_time" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        复核人
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" value="@Model.Checker" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" asp-for="@Model.Check_time" readonly="readonly" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        调动原因
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <input type="text" asp-for="@Model.Change_reason" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        复合通过意见
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <input type="text" asp-for="@Model.Check_reason" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    </body>
+</html>

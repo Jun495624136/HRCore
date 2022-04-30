@@ -2,7 +2,8 @@
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under the MIT license
- */
+*/
+if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
 if (typeof jQuery === 'undefined') {
   throw new Error('Bootstrap\'s JavaScript requires jQuery')
@@ -22,6 +23,19 @@ if (typeof jQuery === 'undefined') {
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Copyright 2013 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * ======================================================================== */
 
 
@@ -82,6 +96,19 @@ if (typeof jQuery === 'undefined') {
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Copyright 2013 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * ======================================================================== */
 
 
@@ -140,6 +167,9 @@ if (typeof jQuery === 'undefined') {
   // =======================
 
   function Plugin(option) {
+  var old = $.fn.alert
+
+  $.fn.alert = function (option) {
     return this.each(function () {
       var $this = $(this)
       var data  = $this.data('bs.alert')
@@ -177,6 +207,19 @@ if (typeof jQuery === 'undefined') {
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Copyright 2013 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * ======================================================================== */
 
 
@@ -208,6 +251,8 @@ if (typeof jQuery === 'undefined') {
 
     if (data.resetText == null) $el.data('resetText', $el[val]())
 
+    $el[val](data[state] || this.options[state])
+
     // push to event loop to allow forms to submit
     setTimeout($.proxy(function () {
       $el[val](data[state] == null ? this.options[state] : data[state])
@@ -218,7 +263,7 @@ if (typeof jQuery === 'undefined') {
       } else if (this.isLoading) {
         this.isLoading = false
         $el.removeClass(d).removeAttr(d).prop(d, false)
-      }
+  }
     }, this), 0)
   }
 
@@ -235,13 +280,13 @@ if (typeof jQuery === 'undefined') {
       } else if ($input.prop('type') == 'checkbox') {
         if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
         this.$element.toggleClass('active')
-      }
+    }
       $input.prop('checked', this.$element.hasClass('active'))
       if (changed) $input.trigger('change')
     } else {
       this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
-      this.$element.toggleClass('active')
-    }
+    this.$element.toggleClass('active')
+  }
   }
 
 
@@ -285,7 +330,7 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($btn, 'toggle')
       if (!($(e.target).is('input[type="radio"], input[type="checkbox"]'))) {
         // Prevent double click on radios, and the double selections (so cancellation) on checkboxes
-        e.preventDefault()
+    e.preventDefault()
         // The target component still receive the focus
         if ($btn.is('input,button')) $btn.trigger('focus')
         else $btn.find('input:visible,button:visible').first().trigger('focus')
@@ -293,7 +338,7 @@ if (typeof jQuery === 'undefined') {
     })
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
-    })
+  })
 
 }(jQuery);
 
@@ -303,6 +348,19 @@ if (typeof jQuery === 'undefined') {
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * ======================================================================== */
 
 
@@ -418,6 +476,7 @@ if (typeof jQuery === 'undefined') {
     var $next     = next || this.getItemForDirection(type, $active)
     var isCycling = this.interval
     var direction = type == 'next' ? 'left' : 'right'
+    var fallback  = type == 'next' ? 'first' : 'last'
     var that      = this
 
     if ($next.hasClass('active')) return (this.sliding = false)
@@ -434,14 +493,21 @@ if (typeof jQuery === 'undefined') {
 
     isCycling && this.pause()
 
+    var e = $.Event('slide.bs.carousel', { relatedTarget: $next[0], direction: direction })
+
+    if ($next.hasClass('active')) return
+
     if (this.$indicators.length) {
       this.$indicators.find('.active').removeClass('active')
       var $nextIndicator = $(this.$indicators.children()[this.getItemIndex($next)])
-      $nextIndicator && $nextIndicator.addClass('active')
+        $nextIndicator && $nextIndicator.addClass('active')
+      })
     }
 
     var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
     if ($.support.transition && this.$element.hasClass('slide')) {
+      this.$element.trigger(e)
+      if (e.isDefaultPrevented()) return
       $next.addClass(type)
       $next[0].offsetWidth // force reflow
       $active.addClass(direction)
@@ -457,6 +523,8 @@ if (typeof jQuery === 'undefined') {
         })
         .emulateTransitionEnd(Carousel.TRANSITION_DURATION)
     } else {
+      this.$element.trigger(e)
+      if (e.isDefaultPrevented()) return
       $active.removeClass('active')
       $next.addClass('active')
       this.sliding = false
@@ -472,7 +540,6 @@ if (typeof jQuery === 'undefined') {
   // CAROUSEL PLUGIN DEFINITION
   // ==========================
 
-  function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.carousel')
@@ -595,6 +662,8 @@ if (typeof jQuery === 'undefined') {
     this.$element.trigger(startEvent)
     if (startEvent.isDefaultPrevented()) return
 
+    var actives = this.$parent && this.$parent.find('> .panel > .in')
+
     if (actives && actives.length) {
       Plugin.call(actives, 'hide')
       activesData || actives.data('bs.collapse', null)
@@ -656,6 +725,7 @@ if (typeof jQuery === 'undefined') {
     var complete = function () {
       this.transitioning = 0
       this.$element
+        .trigger('hidden.bs.collapse')
         .removeClass('collapsing')
         .addClass('collapse')
         .trigger('hidden.bs.collapse')
@@ -742,6 +812,8 @@ if (typeof jQuery === 'undefined') {
     var $target = getTargetFromTrigger($this)
     var data    = $target.data('bs.collapse')
     var option  = data ? 'toggle' : $this.data()
+    var parent  = $this.attr('data-parent')
+    var $parent = parent && $(parent)
 
     Plugin.call($target, option)
   })
@@ -1248,11 +1320,13 @@ if (typeof jQuery === 'undefined') {
       $target.one('hidden.bs.modal', function () {
         $this.is(':visible') && $this.trigger('focus')
       })
-    })
+  })
     Plugin.call($target, option, this)
   })
 
 }(jQuery);
+
+}(window.jQuery);
 
 /* ========================================================================
  * Bootstrap: tooltip.js v3.3.7
@@ -1299,7 +1373,7 @@ if (typeof jQuery === 'undefined') {
     viewport: {
       selector: 'body',
       padding: 0
-    }
+  }
   }
 
   Tooltip.prototype.init = function (type, element, options) {
@@ -1468,6 +1542,8 @@ if (typeof jQuery === 'undefined') {
       var actualHeight = $tip[0].offsetHeight
 
       if (autoPlace) {
+        var $parent = this.$element.parent()
+
         var orgPlacement = placement
         var viewportDim = this.getPosition(this.$viewport)
 
@@ -1492,14 +1568,14 @@ if (typeof jQuery === 'undefined') {
         that.hoverState = null
 
         if (prevHoverState == 'out') that.leave(that)
-      }
+    }
 
       $.support.transition && this.$tip.hasClass('fade') ?
         $tip
           .one('bsTransitionEnd', complete)
           .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
         complete()
-    }
+  }
   }
 
   Tooltip.prototype.applyPlacement = function (offset, placement) {
@@ -1536,6 +1612,7 @@ if (typeof jQuery === 'undefined') {
     var actualHeight = $tip[0].offsetHeight
 
     if (placement == 'top' && actualHeight != height) {
+      replace = true
       offset.top = offset.top + height - actualHeight
     }
 
@@ -1550,12 +1627,19 @@ if (typeof jQuery === 'undefined') {
 
     $tip.offset(offset)
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
-  }
+      }
 
   Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
     this.arrow()
       .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
       .css(isVertical ? 'top' : 'left', '')
+    }
+
+    if (replace) $tip.offset(offset)
+  }
+
+  Tooltip.prototype.replaceArrow = function(delta, dimension, position) {
+    this.arrow().css(position, delta ? (50 * (1 - delta / dimension) + "%") : '')
   }
 
   Tooltip.prototype.setContent = function () {
@@ -1577,7 +1661,7 @@ if (typeof jQuery === 'undefined') {
         that.$element
           .removeAttr('aria-describedby')
           .trigger('hidden.bs.' + that.type)
-      }
+    }
       callback && callback()
     }
 
@@ -1619,7 +1703,7 @@ if (typeof jQuery === 'undefined') {
     if (elRect.width == null) {
       // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
       elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top })
-    }
+  }
     var isSvg = window.SVGElement && el instanceof window.SVGElement
     // Avoid using $.offset() on SVGs since it gives incorrect results in jQuery 3.
     // See https://github.com/twbs/bootstrap/issues/20280
@@ -1688,7 +1772,13 @@ if (typeof jQuery === 'undefined') {
       this.$tip = $(this.options.template)
       if (this.$tip.length != 1) {
         throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
-      }
+  }
+
+  Tooltip.prototype.validate = function () {
+    if (!this.$element[0].parentNode) {
+      this.hide()
+      this.$element = null
+      this.options  = null
     }
     return this.$tip
   }
@@ -1724,8 +1814,8 @@ if (typeof jQuery === 'undefined') {
       if (self.isInStateTrue()) self.enter(self)
       else self.leave(self)
     } else {
-      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
-    }
+    self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+  }
   }
 
   Tooltip.prototype.destroy = function () {
@@ -2132,7 +2222,7 @@ if (typeof jQuery === 'undefined') {
       $active
         .removeClass('active')
         .find('> .dropdown-menu > .active')
-          .removeClass('active')
+        .removeClass('active')
         .end()
         .find('[data-toggle="tab"]')
           .attr('aria-expanded', false)
@@ -2311,7 +2401,7 @@ if (typeof jQuery === 'undefined') {
 
       if (e.isDefaultPrevented()) return
 
-      this.affixed = affix
+    this.affixed = affix
       this.unpin = affix == 'bottom' ? this.getPinnedOffset() : null
 
       this.$element
